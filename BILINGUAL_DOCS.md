@@ -17,6 +17,7 @@
 | **Phase 1 Checklist** | `step_1_checklist.md` | `step_1_checklist.zh-TW.md` | ✅ Complete |
 | **Strategy Overview** | `stablecoin_strategy_overview.md` | `stablecoin_strategy_overview.zh-TW.md` | ✅ Complete |
 | **Monorepo README** | `the-project/README.md` | `the-project/README.zh-TW.md` | ✅ Complete |
+| **Approved Stablecoin List** | `approved_stablecoin_arbitrage_list.md` | `approved_stablecoin_arbitrage_list.zh-TW.md` | ✅ Complete |
 
 ---
 
@@ -85,6 +86,15 @@
 - Testing strategies and security measures
 - Contribution guidelines and code standards
 
+### 7. **approved_stablecoin_arbitrage_list.md** / **approved_stablecoin_arbitrage_list.zh-TW.md**
+**Purpose:** Audited stablecoin arbitrage whitelist and parameters
+- Comprehensive risk assessment framework for stablecoin approval
+- Detailed USDT and USDC integration specifications
+- Cross-chain contract addresses and supported DEX pools
+- Arbitrage monitoring thresholds and execution parameters
+- Risk management limits and compliance requirements
+- Future expansion criteria and exclusion standards
+
 ---
 
 ## 🌐 **Language-Specific Features**
@@ -125,7 +135,7 @@
 ## 📊 **Documentation Metrics**
 
 ### **Coverage Statistics**
-- **Total Documents:** 6 major documentation files
+- **Total Documents:** 7 major documentation files
 - **Bilingual Coverage:** 100% complete
 - **Total Content:** ~50,000+ words across both languages
 - **Technical Depth:** Comprehensive from overview to implementation details
