@@ -251,10 +251,61 @@ contract MultiStablecoinEntrypoint is USDTEntrypointContract {
 └── StargateFastBridge.sol        # 快速 USDC 橋接
 ```
 
-#### 步驟 2.1.2：增強路由引擎
+#### 步驟 2.1.2：增強路由引擎與套利檢測
+
+**理解穩定幣套利基礎**
+
+穩定幣套利機會源於不同地方的暫時價格無效性：
+- **鏈間**：同一穩定幣在不同價格交易（例如，USDT 在以太坊 $1.002 vs BSC $0.998）
+- **DEX間**：穩定幣對之間的不同匯率（例如，Uniswap 上 USDT/USDC 為 1.003 vs Curve 上 0.997）
+- **錨定偏差**：由於市場壓力或流動性失衡導致的 $1.00 錨定暫時偏差
+
+**真實世界套利案例：**
+
+1. **跨鏈 USDT 溢價（2022年5月）**：在 UST 脫鉤期間，由於避險情緒，USDT 在以太坊交易價為 $1.05，而在 BSC 維持 $1.00，創造了 5% 的套利機會。
+
+2. **Curve vs Uniswap 價差（2023年3月）**：在 USDC 脫鉤期間，由於恐慌拋售 USDC，USDT/USDC 在 Uniswap 交易價為 1.08，而 Curve 的穩定池維持 1.02，創造了 6% 的價差。
+
+3. **橋接溢價套利**：跨鏈橋接在高擁堵期間通常有溢價交易 - 用戶支付 0.5-2% 溢價進行快速橋接，創造套利機會。
+
+**套利檢測策略：**
+
+我們的路由引擎持續監控：
+- 來自 15+ 鏈和 25+ DEX 的價格數據源
+- 橋接成本和執行時間
+- 最大交易規模的流動性深度
+- Gas 成本和 MEV 保護要求
+
+**風險管理：**
+- **滑點風險**：大額交易可能不利地移動價格
+- **橋接風險**：跨鏈交易有最終性延遲
+- **MEV 風險**：機器人搶跑可能減少盈利性
+- **智能合約風險**：執行期間的協議故障
+
 ```typescript
 // routing-engine/src/stablecoin/StablecoinRouter.ts
+interface ArbitrageOpportunity {
+  id: string;
+  type: 'cross-chain' | 'cross-dex' | 'stable-to-stable';
+  profitability: number; // 預期利潤（基點）
+  volume: BigNumber; // 最大盈利交易量
+  route: ArbitrageRoute;
+  timeWindow: number; // 機會有效性（秒）
+  riskLevel: 'LOW' | 'MEDIUM' | 'HIGH';
+}
+
+interface ArbitrageRoute {
+  steps: ArbitrageStep[];
+  totalGasCost: BigNumber;
+  expectedProfit: BigNumber;
+  executionTime: number; // 預估秒數
+  requiredCapital: BigNumber;
+}
+
 class StablecoinRouter {
+  private arbitrageDetector: ArbitrageDetector;
+  private priceOracle: PriceOracle;
+  
   async findOptimalStablePath(
     fromStable: 'USDT' | 'USDC',
     toStable: 'USDT' | 'USDC',
@@ -262,15 +313,108 @@ class StablecoinRouter {
     fromChain: number,
     toChain: number
   ): Promise<StablecoinRoute> {
-    // 優化最小滑點和最快執行
-    // 考慮套利機會
+    // 1. 獲取所有 DEX 和鏈上的當前價格
+    const prices = await this.priceOracle.getAllPrices([fromStable, toStable]);
+    
+    // 2. 檢查可能對用戶有利的套利機會
+    const arbitrageOpps = await this.getStablecoinArbitrageOpportunities();
+    
+    // 3. 如果用戶交易與盈利套利一致，同時優化兩者
+    const alignedArbitrage = this.findAlignedArbitrage(
+      { fromStable, toStable, amount, fromChain, toChain },
+      arbitrageOpps
+    );
+    
+    if (alignedArbitrage) {
+      // 通過套利路徑路由給用戶更好的匯率
+      return this.buildArbitrageEnhancedRoute(alignedArbitrage, amount);
+    }
+    
+    // 4. 否則，找到標準最優路徑
+    return this.findStandardOptimalPath(fromStable, toStable, amount, fromChain, toChain);
   }
   
-  async getStablecoinArbitrageOpportunities(): Promise<ArbitrageRoute[]> {
-    // 識別跨鏈 USDT/USDC 價格差異的盈利機會
+  async getStablecoinArbitrageOpportunities(): Promise<ArbitrageOpportunity[]> {
+    const opportunities: ArbitrageOpportunity[] = [];
+    
+    // 類型 1：跨鏈 USDT/USDC 價格差異
+    const crossChainOpps = await this.detectCrossChainArbitrage();
+    opportunities.push(...crossChainOpps);
+    
+    // 類型 2：同鏈上的跨 DEX 套利
+    const crossDexOpps = await this.detectCrossDexArbitrage();
+    opportunities.push(...crossDexOpps);
+    
+    // 類型 3：穩定幣對穩定幣匯率套利
+    const stableToStableOpps = await this.detectStableToStableArbitrage();
+    opportunities.push(...stableToStableOpps);
+    
+    // 類型 4：收益農場 + 橋接套利
+    const yieldArbitrageOpps = await this.detectYieldArbitrage();
+    opportunities.push(...yieldArbitrageOpps);
+    
+    // 按盈利性和風險過濾
+    return opportunities
+      .filter(opp => opp.profitability > 10) // 最低 10 個基點（0.1%）
+      .sort((a, b) => b.profitability - a.profitability);
   }
 }
 ```
+
+**實際實施示例：**
+
+```typescript
+// 實時監控實施
+class ArbitrageMonitor {
+  private readonly PROFIT_THRESHOLD = 0.001; // 0.1% 最低利潤
+  private readonly MAX_TRADE_SIZE = ethers.utils.parseEther("100000"); // $100k 最大
+  
+  async monitorRealTimeOpportunities(): Promise<void> {
+    setInterval(async () => {
+      // 監控主要鏈上的前 5 個穩定幣對
+      const monitoringPairs = [
+        { from: 'USDT', to: 'USDC', chains: [1, 42161, 137, 56] },
+        { from: 'USDT', to: 'DAI', chains: [1, 42161, 10] },
+        { from: 'USDC', to: 'DAI', chains: [1, 137, 42161] }
+      ];
+      
+      for (const pair of monitoringPairs) {
+        const opportunities = await this.scanPairOpportunities(pair);
+        
+        for (const opp of opportunities) {
+          if (opp.profitPercentage > this.PROFIT_THRESHOLD) {
+            console.log(`🚨 套利警報：${pair.from}/${pair.to}`);
+            console.log(`利潤：${(opp.profitPercentage * 100).toFixed(3)}%`);
+            console.log(`最大規模：$${opp.maxTradeSize.toString()}`);
+            console.log(`執行時間：${opp.estimatedTime}秒`);
+            
+            // 如果利潤 > 0.5% 且規模 > $10k，自動執行
+            if (opp.profitPercentage > 0.005 && opp.maxTradeSize > 10000) {
+              await this.executeArbitrage(opp);
+            }
+          }
+        }
+      }
+    }, 3000); // 每 3 秒檢查一次
+  }
+}
+```
+
+**關鍵套利監控指標：**
+
+1. **盈利門檻**：扣除所有成本後最低 0.1% 利潤
+2. **執行速度**：跨鏈目標 <60 秒，同鏈 <30 秒
+3. **成功率**：目標 >90% 成功執行
+4. **風險管理**：單筆交易風險永不超過總資本的 2%
+5. **MEV 保護**：大額套利交易使用私有內存池
+
+**與用戶路由整合：**
+
+當用戶請求 USDT→USDC 兌換時，我們的路由器：
+1. 檢查路線上的盈利套利機會
+2. 與用戶分享 50% 的套利利潤（更好的匯率）
+3. 使用剩餘 50% 補貼平台運營
+4. 為用戶提供比標準 DEX 聚合器更好的匯率
 
 #### 步驟 2.1.3：多穩定幣前端
 ```typescript
