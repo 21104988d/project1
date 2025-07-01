@@ -37,8 +37,8 @@
 - [x] 設置 hooks 目錄：
   - [x] `src/hooks/useWallet.ts`
   - [x] `src/hooks/useSwap.ts`
-- [ ] 配置構建和開發腳本
-- [ ] 設置 ESLint 和 Prettier 配置
+- [x] 配置構建和開發腳本
+- [x] 設置 ESLint 和 Prettier 配置
 
 #### 1.2.2 合約套件 (`packages/contracts/`)
 - [x] 初始化 Hardhat TypeScript 項目
@@ -69,23 +69,23 @@
   - [x] `src/aggregation/` (PriceFeedManager, LiquidityMonitor)
   - [x] `src/pathfinding/` (GraphBuilder, RouteOptimizer)
   - [x] `src/execution/` (QuoteCalculator)
-- [ ] 設置配置管理
-- [ ] 創建 Docker 配置
-- [ ] 設置測試框架 (Jest)
+- [x] 設置配置管理
+- [x] 創建 Docker 配置
+- [x] 設置測試框架 (Jest)
 
 #### 1.2.4 共享套件 (`packages/shared/`)
 - [x] 初始化 TypeScript 函式庫項目
 - [x] 設置共享工具的 `package.json`
 - [x] 創建類型定義：
-  - [ ] `types/tokens.ts`
-  - [ ] `types/routes.ts`
-  - [ ] `types/quotes.ts`
-  - [ ] `types/chains.ts`
+  - [x] `types/tokens.ts`
+  - [x] `types/routes.ts`
+  - [x] `types/quotes.ts`
+  - [x] `types/chains.ts`
 - [x] 創建工具函數：
-  - [ ] `utils/formatters.ts`
-  - [ ] `utils/validators.ts`
-  - [ ] `utils/constants.ts`
-- [ ] 設置函式庫輸出的構建配置
+  - [x] `utils/formatters.ts`
+  - [x] `utils/validators.ts`
+  - [x] `utils/constants.ts`
+- [x] 設置函式庫輸出的構建配置
 
 #### 1.2.5 API 套件 (`packages/api/`)
 - [x] 初始化 Node.js TypeScript 項目
@@ -98,8 +98,8 @@
   - [x] `src/routes/` (quotes, tokens, execute, status)
   - [x] `src/websocket/` (PriceUpdates)
   - [x] `src/middleware/` (auth, validation, rate limiting)
-- [ ] 設置 API 文檔 (Swagger/OpenAPI)
-- [ ] 配置環境管理
+- [x] 設置 API 文檔 (Swagger/OpenAPI)
+- [x] 配置環境管理
 
 ### 1.3 文檔目錄 (`docs/`)
 - [ ] 創建 `docs/` 目錄
