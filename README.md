@@ -65,18 +65,31 @@ project1/
 
 ## 🏗️ Development Phases
 
-### Phase 1: V1 Centralized Router Aggregator
+### Phase 1: V1 Centralized Router Aggregator - "StableBridge Foundation"
 **Timeline:** Months 1-6  
 **Status:** 🚧 In Development
 
+#### Part 1: "USDT Core" (Months 1-2)
 - ✅ Monorepo setup with NX
 - ✅ Project structure and configuration
-- 🚧 Smart contract development
-- 🚧 Frontend DApp interface
-- 🚧 Routing engine implementation
+- 🚧 Smart contract development (USDT-focused)
+- 🚧 Frontend DApp interface (USDT swaps only)
+- 🚧 Routing engine implementation (USDT pathfinding)
 - 🚧 API services development
 
-### Phase 2: V2 Decentralized Routing Network  
+#### Part 2: "USDC Expansion" (Months 3-4)
+- 📋 USDC integration and smart contract extension
+- 📋 Multi-stablecoin frontend interface
+- 📋 Enhanced routing for USDT/USDC pairs
+- 📋 Cross-chain USDC support
+
+#### Part 3: "Stable Ecosystem Complete" (Months 5-6)
+- 📋 Full stablecoin support (DAI, FRAX, TUSD, BUSD)
+- 📋 Advanced stable-to-stable arbitrage routing
+- 📋 Yield optimization features
+- 📋 Comprehensive testing and security audits
+
+### Phase 2: V2 Decentralized Routing Network - "Universal DeFi Router"
 **Timeline:** Months 7-12  
 **Status:** 📋 Planned
 
@@ -84,6 +97,7 @@ project1/
 - 📋 P2P node development (Rust)
 - 📋 Consensus mechanism
 - 📋 Economic incentives and staking
+- 📋 Full multi-asset support (ETH, BTC, SOL, etc.)
 
 ## 🛠️ Technology Stack
 
@@ -239,18 +253,20 @@ yarn workspace @theproject/contracts test
 
 ## 📈 Project Status
 
-### Current Milestone: Phase 1 Foundation
+### Current Milestone: Phase 1 Part 1 - "USDT Core"
 - **Repository Setup:** ✅ Complete
-- **Smart Contracts:** 🚧 In Progress
-- **Frontend DApp:** 🚧 In Progress  
-- **Routing Engine:** 🚧 In Progress
+- **USDT Smart Contracts:** 🚧 In Progress
+- **USDT-focused Frontend:** 🚧 In Progress  
+- **USDT Routing Engine:** 🚧 In Progress
 - **API Services:** 🚧 In Progress
 
 ### Next Milestones
-1. **V1 Beta Launch** - Basic cross-chain swaps
-2. **Security Audits** - Professional security review
-3. **Mainnet Deployment** - Production release
-4. **V2 Development** - Decentralized network
+1. **USDT Core Beta** - Basic USDT cross-chain swaps
+2. **USDC Expansion** - Add USDC support and pairing
+3. **Stable Ecosystem** - Complete stablecoin integration
+4. **Security Audits** - Professional security review
+5. **Mainnet Deployment** - Production release
+6. **V2 Development** - Universal DeFi router
 
 ## 📞 Support & Community
 
@@ -272,4 +288,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**🚀 Ready to revolutionize cross-chain DeFi? Start with `cd the-project && yarn install`**
+**🚀 Ready to revolutionize cross-chain stablecoin DeFi? Start with `cd the-project && yarn install`**
+
+### 🪙 Stablecoin Focus Strategy
+
+**Phase 1** focuses exclusively on stablecoin infrastructure to establish a robust, secure foundation:
+
+- **Part 1 (USDT Core):** Build rock-solid USDT cross-chain infrastructure
+- **Part 2 (USDC Expansion):** Add USDC and enable stable-to-stable swaps  
+- **Part 3 (Stable Ecosystem):** Complete all major stablecoins integration
+
+This focused approach ensures maximum security, optimal liquidity, and proven market-fit before expanding to volatile assets in Phase 2.

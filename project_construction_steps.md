@@ -1,16 +1,16 @@
 # The Project - Detailed Construction Steps
 
-**Version:** 1.0  
-**Date:** June 30, 2025  
-**Purpose:** Comprehensive step-by-step guide to construct the cross-chain DApp system
+**Version:** 2.0  
+**Date:** July 1, 2025  
+**Purpose:** Comprehensive step-by-step guide to construct the stablecoin-focused cross-chain DApp system
 
 ---
 
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
-2. [Phase 1: V1 Centralized Router Aggregator](#phase-1-v1-centralized-router-aggregator)
-3. [Phase 2: V2 Decentralized Routing Network](#phase-2-v2-decentralized-routing-network)
+2. [Phase 1: V1 "StableBridge Foundation" - Centralized Router Aggregator](#phase-1-v1-stablebridge-foundation)
+3. [Phase 2: V2 "Universal DeFi Router" - Decentralized Routing Network](#phase-2-v2-universal-defi-router)
 4. [Development Environment Setup](#development-environment-setup)
 5. [Implementation Timeline](#implementation-timeline)
 
@@ -18,18 +18,30 @@
 
 ## Project Overview
 
-**The Project** is a decentralized application (DApp) that simplifies cross-chain asset exchanges by aggregating existing infrastructure. The construction will be done in two major phases:
+**The Project** is a decentralized application (DApp) that simplifies cross-chain stablecoin exchanges by aggregating existing infrastructure. The construction follows a focused stablecoin-first approach in two major phases:
 
-- **V1**: Centralized routing aggregator with trust-minimized execution
-- **V2**: Decentralized routing network (Pathfinder Network)
+- **V1 "StableBridge Foundation"**: Stablecoin-focused routing aggregator (USDT → USDC → All Stablecoins)
+- **V2 "Universal DeFi Router"**: Universal multi-asset decentralized routing network
+
+### 🎯 Stablecoin-First Strategy
+
+This focused approach ensures:
+- **Maximum Security**: Start with lower-risk, stable assets
+- **Proven Market Fit**: Stablecoins dominate cross-chain volume
+- **Optimal Liquidity**: Most liquid and predictable trading pairs
+- **Regulatory Clarity**: Clearer regulatory path for stablecoin infrastructure
 
 ---
 
-## Phase 1: V1 Centralized Router Aggregator
+## Phase 1: V1 "StableBridge Foundation" - Centralized Router Aggregator
 
-### 1.1 Infrastructure and Environment Setup
+### Part 1: "USDT Core" (Months 1-2)
 
-#### Step 1.1.1: Development Environment
+**Objective:** Build rock-solid USDT cross-chain infrastructure
+
+#### 1.1 USDT-Focused Infrastructure Setup
+
+#### Step 1.1.1: USDT-Optimized Development Environment
 ```bash
 # Required tools and versions
 Node.js: v18+ 
@@ -41,48 +53,64 @@ React: v18+
 Docker: Latest
 Redis: v7+
 PostgreSQL: v14+
+
+# USDT-specific tools
+USDT Contract Addresses (Multi-chain)
+Tether API Integration
+USDT-compatible wallet libraries
 ```
 
-#### Step 1.1.2: Repository Structure
+#### Step 1.1.2: USDT-Focused Repository Structure
 ```
 the-project/
 ├── packages/
-│   ├── frontend/              # React DApp interface
-│   ├── contracts/             # Smart contracts
-│   ├── routing-engine/        # Off-chain routing service
-│   ├── shared/               # Shared types and utilities
-│   └── api/                  # Backend API services
-├── docs/                     # Documentation
-├── scripts/                  # Deployment scripts
-└── tests/                    # Integration tests
+│   ├── frontend/              # React DApp (USDT-focused UI)
+│   ├── contracts/             # Smart contracts (USDT-optimized)
+│   ├── routing-engine/        # USDT routing service
+│   ├── shared/               # USDT types and utilities
+│   └── api/                  # USDT-focused API services
+├── docs/                     # USDT documentation
+├── scripts/                  # USDT deployment scripts
+└── tests/                    # USDT integration tests
 ```
 
-### 1.2 Smart Contract Development
+### 1.2 USDT Smart Contract Development
 
-#### Step 1.2.1: Core Contract Architecture
+#### Step 1.2.1: USDT-Optimized Contract Architecture
 ```solidity
-// contracts/core/EntrypointContract.sol
-contract EntrypointContract {
-    // Handles user transaction initiation on source chain
-    // Functions: executeSwap, bridgeAndSwap, emergencyWithdraw
+// contracts/core/USDTEntrypointContract.sol
+contract USDTEntrypointContract {
+    // Handles USDT transaction initiation on source chain
+    // Functions: executeUSDTSwap, bridgeUSDT, emergencyUSDTWithdraw
+    
+    mapping(bytes32 => USDTSwapParams) public usdtSwaps;
+    
+    event USDTSwapInitiated(bytes32 indexed swapId, address indexed user, uint256 amount);
+    event USDTBridgeStarted(bytes32 indexed swapId, uint16 destChainId);
 }
 
-// contracts/core/ResolverContract.sol  
-contract ResolverContract {
-    // Handles final asset delivery on destination chain
-    // Functions: resolveSwap, claimAssets, refund
+// contracts/core/USDTResolverContract.sol  
+contract USDTResolverContract {
+    // Handles final USDT delivery on destination chain
+    // Functions: resolveUSDTSwap, claimUSDT, refundUSDT
+    
+    mapping(bytes32 => USDTResolution) public usdtResolutions;
+    
+    event USDTSwapResolved(bytes32 indexed swapId, address indexed recipient, uint256 amount);
 }
 
-// contracts/interfaces/IRouterProtocol.sol
-interface IRouterProtocol {
-    // Standardized interface for DEX integrations
+// contracts/interfaces/IUSDTRouterProtocol.sol
+interface IUSDTRouterProtocol {
+    // Standardized interface for USDT DEX integrations
+    function getUSDTQuote(uint256 amountIn, address tokenOut) external view returns (uint256);
+    function executeUSDTSwap(uint256 amountIn, uint256 minAmountOut, address to) external;
 }
 
-// contracts/integrations/
-├── UniswapV3Integration.sol   # Uniswap V3 router
-├── LayerZeroIntegration.sol   # LayerZero bridge
-├── StargateIntegration.sol    # Stargate bridge
-└── OrcaIntegration.sol        # Solana Orca DEX
+// contracts/integrations/usdt/
+├── UniswapV3USDTIntegration.sol   # USDT/ETH, USDT/USDC pairs
+├── LayerZeroUSDTIntegration.sol   # USDT cross-chain bridge
+├── StargateUSDTIntegration.sol    # USDT Stargate pools
+└── CurveUSDTIntegration.sol       # USDT stable pools
 ```
 
 #### Step 1.2.2: Smart Contract Implementation Steps
@@ -400,7 +428,156 @@ class SystemMonitor {
 
 ---
 
-## Phase 2: V2 Decentralized Routing Network
+### Part 2: "USDC Expansion" (Months 3-4)
+
+**Objective:** Add USDC support and enable stable-to-stable swaps
+
+#### 2.1 USDC Integration Development
+
+#### Step 2.1.1: USDC Smart Contract Extension
+```solidity
+// contracts/core/MultiStablecoinEntrypoint.sol
+contract MultiStablecoinEntrypoint is USDTEntrypointContract {
+    mapping(address => bool) public supportedStablecoins;
+    mapping(bytes32 => StablecoinSwapParams) public stablecoinSwaps;
+    
+    // USDT ↔ USDC specific functions
+    function executeStableToStableSwap(
+        address stablecoinIn,
+        address stablecoinOut,
+        uint256 amountIn,
+        uint256 minAmountOut,
+        uint16 destChainId
+    ) external;
+    
+    event StablecoinSwapInitiated(
+        bytes32 indexed swapId, 
+        address indexed stablecoinIn, 
+        address indexed stablecoinOut,
+        uint256 amountIn
+    );
+}
+
+// contracts/integrations/usdc/
+├── CurveUSDCUSDTPool.sol         # USDT/USDC Curve pools
+├── UniswapV3USDCIntegration.sol  # USDC/ETH, USDC/USDT pairs
+└── StargateFastBridge.sol        # Fast USDC bridging
+```
+
+#### Step 2.1.2: Enhanced Routing Engine
+```typescript
+// routing-engine/src/stablecoin/StablecoinRouter.ts
+class StablecoinRouter {
+  async findOptimalStablePath(
+    fromStable: 'USDT' | 'USDC',
+    toStable: 'USDT' | 'USDC',
+    amount: BigNumber,
+    fromChain: number,
+    toChain: number
+  ): Promise<StablecoinRoute> {
+    // Optimize for minimal slippage and fastest execution
+    // Consider arbitrage opportunities
+  }
+  
+  async getStablecoinArbitrageOpportunities(): Promise<ArbitrageRoute[]> {
+    // Identify profitable USDT/USDC price differences across chains
+  }
+}
+```
+
+#### Step 2.1.3: Multi-Stablecoin Frontend
+```typescript
+// frontend/src/components/StablecoinSwapInterface.tsx
+export const StablecoinSwapInterface: React.FC = () => {
+  const [fromStable, setFromStable] = useState<'USDT' | 'USDC'>('USDT');
+  const [toStable, setToStable] = useState<'USDT' | 'USDC'>('USDC');
+  
+  // Enhanced UI for stable-to-stable swaps
+  // Show arbitrage opportunities
+  // Display yield optimization suggestions
+}
+```
+
+---
+
+### Part 3: "Stable Ecosystem Complete" (Months 5-6)
+
+**Objective:** Complete stablecoin ecosystem integration
+
+#### 3.1 Full Stablecoin Support
+
+#### Step 3.1.1: Comprehensive Stablecoin Integration
+```solidity
+// contracts/core/StablecoinEcosystemRouter.sol
+contract StablecoinEcosystemRouter {
+    enum SupportedStablecoins {
+        USDT,
+        USDC,
+        DAI,
+        FRAX,
+        TUSD,
+        BUSD
+    }
+    
+    mapping(SupportedStablecoins => address) public stablecoinAddresses;
+    mapping(bytes32 => EcosystemSwapParams) public ecosystemSwaps;
+    
+    function executeMultiStableSwap(
+        SupportedStablecoins[] memory path,
+        uint256 amountIn,
+        uint256 minAmountOut,
+        address recipient
+    ) external;
+    
+    function getOptimalStablePath(
+        SupportedStablecoins from,
+        SupportedStablecoins to,
+        uint256 amount
+    ) external view returns (SupportedStablecoins[] memory path, uint256 expectedOut);
+}
+```
+
+#### Step 3.1.2: Advanced Stablecoin Features
+```typescript
+// routing-engine/src/advanced/YieldOptimizer.ts
+class StablecoinYieldOptimizer {
+  async findYieldOpportunities(
+    stablecoin: SupportedStablecoin,
+    amount: BigNumber,
+    duration: number
+  ): Promise<YieldStrategy[]> {
+    // Integrate with Aave, Compound, Curve yield strategies
+    // Find optimal stablecoin parking strategies during swaps
+  }
+  
+  async optimizeForTaxEfficiency(
+    swapParams: SwapParams,
+    userLocation: string
+  ): Promise<TaxOptimizedRoute> {
+    // Consider tax implications of different stable-to-stable routes
+  }
+}
+```
+
+#### Step 3.1.3: Production Readiness
+```typescript
+// Advanced monitoring and alerting
+class StablecoinHealthMonitor {
+  async monitorStablecoinPegs(): Promise<void> {
+    // Monitor for depeg events
+    // Implement circuit breakers for unstable coins
+  }
+  
+  async detectArbitrageAttacks(): Promise<void> {
+    // MEV protection for stablecoin swaps
+    // Front-running prevention
+  }
+}
+```
+
+---
+
+## Phase 2: V2 "Universal DeFi Router" - Decentralized Routing Network
 
 ### 2.1 Pathfinder Network Architecture
 
@@ -632,45 +809,52 @@ npm run build
 
 ## Implementation Timeline
 
-### Phase 1: V1 Development (Q4 2024 - Q1 2025)
+### Phase 1: V1 "StableBridge Foundation" Development (Q4 2024 - Q3 2025)
 
-#### Month 1-2: Foundation
+#### Part 1: "USDT Core" (Months 1-2) - Foundation Phase
 - [ ] Set up development environment and repository structure
-- [ ] Implement core smart contracts (EntrypointContract, ResolverContract)
-- [ ] Develop basic DEX integration adapters (Uniswap V3, Sushiswap)
-- [ ] Create routing engine data aggregation layer
+- [ ] Implement USDT-optimized smart contracts (USDTEntrypoint, USDTResolver)
+- [ ] Develop USDT-focused DEX integration adapters
+- [ ] Create USDT routing engine with price feed aggregation
+- [ ] Build basic USDT frontend interface with wallet integration
+- [ ] Deploy USDT testnet infrastructure
 
-#### Month 3-4: Core Features
-- [ ] Implement pathfinding algorithms and route optimization
-- [ ] Develop quote calculation engine with simulation
-- [ ] Build frontend DApp with wallet integration
-- [ ] Integrate bridge protocols (LayerZero, Stargate)
+#### Part 2: "USDC Expansion" (Months 3-4) - Multi-Stablecoin Phase  
+- [ ] Extend smart contracts for USDC support
+- [ ] Implement stable-to-stable swap optimization
+- [ ] Build enhanced multi-stablecoin frontend interface
+- [ ] Add USDC cross-chain bridge integrations
+- [ ] Implement arbitrage detection and routing
+- [ ] Launch USDT + USDC beta testing
 
-#### Month 5-6: Polish and Launch
-- [ ] Complete security audits and bug fixes
-- [ ] Implement monitoring and alerting systems
-- [ ] Deploy to mainnet with initial chain support (Ethereum, Arbitrum, Solana)
-- [ ] Launch public beta with limited functionality
+#### Part 3: "Stable Ecosystem Complete" (Months 5-6) - Production Phase
+- [ ] Complete all major stablecoin integrations (DAI, FRAX, TUSD, BUSD)
+- [ ] Implement advanced yield optimization features
+- [ ] Complete comprehensive security audits
+- [ ] Deploy production monitoring and alerting systems
+- [ ] Launch mainnet with full stablecoin ecosystem
+- [ ] Achieve product-market fit with stablecoin users
 
-### Phase 2: V2 Development (Q2 2025 - Q4 2025)
+### Phase 2: V2 "Universal DeFi Router" Development (Q4 2025 - Q2 2026)
 
-#### Month 7-9: Pathfinder Network
-- [ ] Design and implement P2P network protocol
+#### Months 7-9: Pathfinder Network Foundation
+- [ ] Design and implement P2P network protocol for universal routing
 - [ ] Develop Pathfinder node software in Rust
 - [ ] Create staking and reputation smart contracts
-- [ ] Build consensus mechanism for route selection
+- [ ] Build consensus mechanism for multi-asset route selection
+- [ ] Extend support to volatile assets (ETH, BTC, SOL)
 
-#### Month 10-12: Integration and Migration
-- [ ] Implement hybrid routing system (V1 + V2)
-- [ ] Launch Pathfinder Network testnet with incentives
-- [ ] Gradual migration from V1 to V2
-- [ ] Achieve full decentralization and sunset V1 infrastructure
+#### Months 10-12: Universal Router Integration
+- [ ] Implement hybrid routing system (Stablecoin V1 + Universal V2)
+- [ ] Launch Pathfinder Network testnet with multi-asset support
+- [ ] Gradual migration from centralized to decentralized routing
+- [ ] Achieve full decentralization across all asset types
 
-### Ongoing: Expansion and Optimization
-- [ ] Add support for additional chains and protocols
+### Ongoing: Global Expansion and Optimization
+- [ ] Add support for additional chains and exotic assets
 - [ ] Implement advanced features (MEV protection, gas optimization)
 - [ ] Scale Pathfinder Network globally
-- [ ] Develop ecosystem partnerships and integrations
+- [ ] Develop ecosystem partnerships and DeFi protocol integrations
 
 ---
 
