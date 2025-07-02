@@ -128,14 +128,14 @@
 - [x] Configure test runners (Jest, Mocha, or Vitest)
 
 ### 1.6 Root Configuration Files
-- [ ] Create `.env.example` with all required environment variables
-- [ ] Set up `docker-compose.yml` for local development
-- [ ] Configure CI/CD pipeline (`.github/workflows/` or `.gitlab-ci.yml`)
-- [ ] Set up code quality tools:
-  - [ ] `.eslintrc.js` (ESLint configuration)
-  - [ ] `.prettierrc` (Prettier configuration)
-  - [ ] `husky` pre-commit hooks
-- [ ] Create `tsconfig.json` for workspace TypeScript configuration
+- [x] Create `.env.example` with all required environment variables
+- [x] Set up `docker-compose.yml` for local development
+- [x] Configure CI/CD pipeline (`.github/workflows/` or `.gitlab-ci.yml`)
+- [x] Set up code quality tools:
+  - [x] `.eslintrc.js` (ESLint configuration)
+  - [x] `.prettierrc` (Prettier configuration)
+  - [x] `husky` pre-commit hooks
+- [x] Create `tsconfig.json` for workspace TypeScript configuration
 
 ---
 

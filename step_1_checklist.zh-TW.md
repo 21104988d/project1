@@ -128,14 +128,14 @@
 - [x] 配置測試運行器 (Jest, Mocha, 或 Vitest)
 
 ### 1.6 根配置文件
-- [ ] 創建包含所有必需環境變量的 `.env.example`
-- [ ] 為本地開發設置 `docker-compose.yml`
-- [ ] 配置 CI/CD 管道 (`.github/workflows/` 或 `.gitlab-ci.yml`)
-- [ ] 設置代碼品質工具：
-  - [ ] `.eslintrc.js` (ESLint 配置)
-  - [ ] `.prettierrc` (Prettier 配置)
-  - [ ] `husky` pre-commit hooks
-- [ ] 為工作空間 TypeScript 配置創建 `tsconfig.json`
+- [x] 創建包含所有必需環境變量的 `.env.example`
+- [x] 為本地開發設置 `docker-compose.yml`
+- [x] 配置 CI/CD 管道 (`.github/workflows/` 或 `.gitlab-ci.yml`)
+- [x] 設置代碼品質工具：
+  - [x] `.eslintrc.js` (ESLint 配置)
+  - [x] `.prettierrc` (Prettier 配置)
+  - [x] `husky` pre-commit hooks
+- [x] 為工作空間 TypeScript 配置創建 `tsconfig.json`
 
 ---
 
