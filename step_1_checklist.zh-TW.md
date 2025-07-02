@@ -111,14 +111,14 @@
 - [x] 初始化文檔工具 (GitBook, Docusaurus, 或 VitePress)
 
 ### 1.4 腳本目錄 (`scripts/`)
-- [ ] 創建 `scripts/` 目錄
-- [ ] 設置部署腳本：
-  - [ ] `deploy-v1.ts` (主要部署腳本)
-  - [ ] `verify-contracts.ts` (合約驗證)
-  - [ ] `setup-infrastructure.ts` (數據庫和 Redis 設置)
-- [ ] 創建工具腳本：
-  - [ ] `generate-types.ts` (從合約生成 TypeScript 類型)
-  - [ ] `seed-data.ts` (使用代幣數據初始化數據庫)
+- [x] 創建 `scripts/` 目錄
+- [x] 設置部署腳本：
+  - [x] `deploy-v1.ts` (主要部署腳本)
+  - [x] `verify-contracts.ts` (合約驗證)
+  - [x] `setup-infrastructure.ts` (數據庫和 Redis 設置)
+- [x] 創建工具腳本：
+  - [x] `generate-types.ts` (從合約生成 TypeScript 類型)
+  - [x] `seed-data.ts` (使用代幣數據初始化數據庫)
 
 ### 1.5 測試目錄 (`tests/`)
 - [ ] 創建 `tests/` 目錄

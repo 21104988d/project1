@@ -111,14 +111,14 @@
 - [x] Initialize documentation tool (GitBook, Docusaurus, or VitePress)
 
 ### 1.4 Scripts Directory (`scripts/`)
-- [ ] Create `scripts/` directory
-- [ ] Set up deployment scripts:
-  - [ ] `deploy-v1.ts` (Main deployment script)
-  - [ ] `verify-contracts.ts` (Contract verification)
-  - [ ] `setup-infrastructure.ts` (Database and Redis setup)
-- [ ] Create utility scripts:
-  - [ ] `generate-types.ts` (Generate TypeScript types from contracts)
-  - [ ] `seed-data.ts` (Initialize database with token data)
+- [x] Create `scripts/` directory
+- [x] Set up deployment scripts:
+  - [x] `deploy-v1.ts` (Main deployment script)
+  - [x] `verify-contracts.ts` (Contract verification)
+  - [x] `setup-infrastructure.ts` (Database and Redis setup)
+- [x] Create utility scripts:
+  - [x] `generate-types.ts` (Generate TypeScript types from contracts)
+  - [x] `seed-data.ts` (Initialize database with token data)
 
 ### 1.5 Tests Directory (`tests/`)
 - [ ] Create `tests/` directory
