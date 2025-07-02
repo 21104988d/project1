@@ -102,13 +102,13 @@
 - [x] 配置環境管理
 
 ### 1.3 文檔目錄 (`docs/`)
-- [ ] 創建 `docs/` 目錄
-- [ ] 設置文檔結構：
-  - [ ] `docs/api/` (API 文檔)
-  - [ ] `docs/contracts/` (智能合約文檔)
-  - [ ] `docs/architecture/` (系統架構圖)
-  - [ ] `docs/deployment/` (部署指南)
-- [ ] 初始化文檔工具 (GitBook, Docusaurus, 或 VitePress)
+- [x] 創建 `docs/` 目錄
+- [x] 設置文檔結構：
+  - [x] `docs/api/` (API 文檔)
+  - [x] `docs/contracts/` (智能合約文檔)
+  - [x] `docs/architecture/` (系統架構圖)
+  - [x] `docs/deployment/` (部署指南)
+- [x] 初始化文檔工具 (GitBook, Docusaurus, 或 VitePress)
 
 ### 1.4 腳本目錄 (`scripts/`)
 - [ ] 創建 `scripts/` 目錄
