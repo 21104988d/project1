@@ -121,11 +121,11 @@
   - [x] `seed-data.ts` (Initialize database with token data)
 
 ### 1.5 Tests Directory (`tests/`)
-- [ ] Create `tests/` directory
-- [ ] Set up integration test structure:
-  - [ ] `tests/integration/` (End-to-end tests)
-  - [ ] `tests/e2e/` (Browser automation tests)
-- [ ] Configure test runners (Jest, Mocha, or Vitest)
+- [x] Create `tests/` directory
+- [x] Set up integration test structure:
+  - [x] `tests/integration/` (End-to-end tests)
+  - [x] `tests/e2e/` (Browser automation tests)
+- [x] Configure test runners (Jest, Mocha, or Vitest)
 
 ### 1.6 Root Configuration Files
 - [ ] Create `.env.example` with all required environment variables

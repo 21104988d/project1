@@ -121,11 +121,11 @@
   - [x] `seed-data.ts` (使用代幣數據初始化數據庫)
 
 ### 1.5 測試目錄 (`tests/`)
-- [ ] 創建 `tests/` 目錄
-- [ ] 設置整合測試結構：
-  - [ ] `tests/integration/` (端到端測試)
-  - [ ] `tests/e2e/` (瀏覽器自動化測試)
-- [ ] 配置測試運行器 (Jest, Mocha, 或 Vitest)
+- [x] 創建 `tests/` 目錄
+- [x] 設置整合測試結構：
+  - [x] `tests/integration/` (端到端測試)
+  - [x] `tests/e2e/` (瀏覽器自動化測試)
+- [x] 配置測試運行器 (Jest, Mocha, 或 Vitest)
 
 ### 1.6 根配置文件
 - [ ] 創建包含所有必需環境變量的 `.env.example`
