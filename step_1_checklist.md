@@ -152,7 +152,7 @@
 - [x] Install Hardhat CLI globally (`npm install -g hardhat`)
 - [x] Install Foundry (`curl -L https://foundry.paradigm.xyz | bash`)
 - [x] Set up local blockchain node (Ganache or Hardhat Network)
-- [ ] Configure RPC endpoints for target networks (Ethereum, Arbitrum, Solana)
+- [x] Configure RPC endpoints for target networks (Ethereum, Arbitrum, Solana)
 
 ### 2.3 Database Setup
 - [ ] Install PostgreSQL v14+

@@ -152,7 +152,7 @@
 - [x] 全域安裝 Hardhat CLI (`npm install -g hardhat`)
 - [x] 安裝 Foundry (`curl -L https://foundry.paradigm.xyz | bash`)
 - [x] 設置本地區塊鏈節點 (Ganache 或 Hardhat Network)
-- [ ] 為目標網絡配置 RPC 端點 (Ethereum, Arbitrum, Solana)
+- [x] 配置目標網絡的 RPC 端點 (Ethereum, Arbitrum, Solana)
 
 ### 2.3 數據庫設置
 - [ ] 安裝 PostgreSQL v14+
