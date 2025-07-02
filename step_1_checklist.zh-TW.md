@@ -142,15 +142,15 @@
 ## 開發環境驗證
 
 ### 2.1 工具安裝驗證
-- [ ] 驗證 Node.js v18+ 安裝 (`node --version`)
-- [ ] 驗證 npm/yarn 安裝 (`npm --version` / `yarn --version`)
-- [ ] 驗證 TypeScript 安裝 (`tsc --version`)
-- [ ] 驗證 Docker 安裝 (`docker --version`)
-- [ ] 驗證 Git 安裝 (`git --version`)
+- [x] 驗證 Node.js v18+ 安裝 (`node --version`)
+- [x] 驗證 npm/yarn 安裝 (`npm --version` / `yarn --version`)
+- [x] 驗證 TypeScript 安裝 (`tsc --version`)
+- [x] 驗證 Docker 安裝 (`docker --version`)
+- [x] 驗證 Git 安裝 (`git --version`)
 
 ### 2.2 區塊鏈開發工具
-- [ ] 全局安裝 Hardhat CLI (`npm install -g hardhat`)
-- [ ] 安裝 Foundry (`curl -L https://foundry.paradigm.xyz | bash`)
+- [x] 全域安裝 Hardhat CLI (`npm install -g hardhat`)
+- [x] 安裝 Foundry (`curl -L https://foundry.paradigm.xyz | bash`)
 - [ ] 設置本地區塊鏈節點 (Ganache 或 Hardhat Network)
 - [ ] 為目標網絡配置 RPC 端點 (Ethereum, Arbitrum, Solana)
 
