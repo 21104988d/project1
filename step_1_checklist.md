@@ -151,7 +151,7 @@
 ### 2.2 Blockchain Development Tools
 - [x] Install Hardhat CLI globally (`npm install -g hardhat`)
 - [x] Install Foundry (`curl -L https://foundry.paradigm.xyz | bash`)
-- [ ] Set up local blockchain node (Ganache or Hardhat Network)
+- [x] Set up local blockchain node (Ganache or Hardhat Network)
 - [ ] Configure RPC endpoints for target networks (Ethereum, Arbitrum, Solana)
 
 ### 2.3 Database Setup

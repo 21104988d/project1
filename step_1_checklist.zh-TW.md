@@ -151,7 +151,7 @@
 ### 2.2 區塊鏈開發工具
 - [x] 全域安裝 Hardhat CLI (`npm install -g hardhat`)
 - [x] 安裝 Foundry (`curl -L https://foundry.paradigm.xyz | bash`)
-- [ ] 設置本地區塊鏈節點 (Ganache 或 Hardhat Network)
+- [x] 設置本地區塊鏈節點 (Ganache 或 Hardhat Network)
 - [ ] 為目標網絡配置 RPC 端點 (Ethereum, Arbitrum, Solana)
 
 ### 2.3 數據庫設置
