@@ -155,24 +155,24 @@
 - [x] 配置目標網絡的 RPC 端點 (Ethereum, Arbitrum, Solana)
 
 ### 2.3 數據庫設置
-- [ ] 安裝 PostgreSQL v14+
-- [ ] 創建開發數據庫 `theproject_dev`
-- [ ] 安裝 Redis v7+
-- [ ] 驗證數據庫連接
+- [x] 安裝 PostgreSQL v14+
+- [x] 創建開發數據庫 `theproject_dev`
+- [x] 安裝 Redis v7+
+- [x] 驗證數據庫連接
 
-### 2.4 套件管理器工作空間設置
-- [ ] 使用 `yarn workspaces` 或 `npm workspaces` 初始化工作空間
-- [ ] 配置工作空間套件之間的套件連結
-- [ ] 設置構建依賴和腳本
-- [ ] 測試工作空間命令 (`yarn workspace frontend dev`)
+### 2.4 套件管理器工作區設置
+- [x] 使用 `yarn workspaces` 或 `npm workspaces` 初始化工作區
+- [x] 配置工作區套件之間的套件連結
+- [x] 設置構建依賴和腳本
+- [x] 測試工作區命令 (`npm run dev -w frontend`)
 
 ---
 
 ## 初始實現任務
 
 ### 3.1 智能合約基礎 - USDT 專注
-- [ ] 創建基本 `EntrypointContract.sol` 結構 (USDT 優化)
-- [ ] 創建基本 `ResolverContract.sol` 結構 (USDT 特定)
+- [x] 創建基本 `EntrypointContract.sol` 結構 (USDT 優化)
+- [x] 創建基本 `ResolverContract.sol` 結構 (USDT 特定)
 - [ ] 設置 OpenZeppelin 導入和基本安全功能
 - [ ] 為 USDT 核心合約撰寫初始單元測試
 - [ ] 配置 Hardhat 編譯和測試
