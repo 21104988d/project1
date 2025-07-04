@@ -1,7 +1,8 @@
 # Approved Stablecoin Arbitrage List
 
-**Version:** 1.0  
+**Version:** v1.0.0  
 **Date:** July 1, 2025  
+**Status:** Pending Review for v2.0.0 strategic updates  
 **Purpose:** Comprehensive list of audited and approved stablecoins for arbitrage operations in The Project
 
 ---

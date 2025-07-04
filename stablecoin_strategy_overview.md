@@ -1,12 +1,28 @@
 # The Project - Stablecoin Strategy Overview
 
-**Version:** 1.0  
-**Date:** July 1, 2025  
+**Version:** v2.0.0  
+**Date:** July 4, 2025  
+**Last Updated:** Added strategic differentiation and user experience focus  
 **Purpose:** Naming convention and strategic overview for the stablecoin-focused development approach
 
 ---
 
 ## 🎯 Strategic Vision: Stablecoin-First DeFi Infrastructure
+
+### Our Unique Position: Customer-to-Customer (C2C) Focus
+
+The Project differentiates itself through radical focus on direct peer-to-peer value transfer:
+
+**Core Philosophy: "PayMe for Web3"**
+- **Zero Cognitive Load**: Users interact with intent, not technical complexity
+- **Transparent Fee Model**: Simple 0.01% service fee, no native token complications
+- **Speed as Feature**: Sub-200ms quotes, instant feedback, magical reliability
+
+**Strategic Differentiation:**
+1. **C2C Focus**: Direct customer-to-customer value transfer
+2. **Corridor Mastery**: Ethereum ↔ Solana excellence before broad expansion  
+3. **Mobile-First**: Progressive Web App approach for maximum accessibility
+4. **Tokenless Model**: Pure utility without speculative tokenomics
 
 ### Why Stablecoins First?
 
