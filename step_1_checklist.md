@@ -200,13 +200,13 @@
 - [x] Add human-readable error handling system
 
 ### 3.3 Backend Services Foundation - USDT Routing
-- [ ] Set up Express/Fastify API server
-- [ ] Create USDT-focused routing engine structure
-- [ ] Set up database schema for USDT transactions and migrations
-- [ ] Implement USDT price feed aggregation
-- [ ] Set up Redis caching layer for USDT rates
-- [ ] Optimize for "Time to Quote" performance metric
-- [ ] Implement aggressive in-memory caching for DEX data
+- [x] Set up Express/Fastify API server
+- [x] Create USDT-focused routing engine structure
+- [x] Set up database schema for USDT transactions and migrations
+- [x] Implement USDT price feed aggregation
+- [x] Set up Redis caching layer for USDT rates
+- [x] Optimize for "Time to Quote" performance metric
+- [x] Implement aggressive in-memory caching for DEX data
 
 ### 3.4 Shared Libraries - USDT Types
 - [ ] Define TypeScript interfaces for USDT-specific types
