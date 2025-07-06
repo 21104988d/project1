@@ -1,7 +1,8 @@
 # The Project - 版本更新日誌
 
-**文件版本：** v1.0.0  
+**文件版本：** v1.1.0  
 **創建日期：** 2025年7月4日  
+**最後更新：** 2025年7月5日  
 **目的：** 追蹤項目文檔的所有版本變更，包含日期和變更描述
 
 ---
@@ -16,6 +17,43 @@
 ---
 
 ## 更新日誌
+
+### 2025年7月5日 - 文檔更新 v2.1.0
+
+**類型：** 次要更新 - 增加 Phase 1.5 設計卓越
+
+**更新檔案：**
+- `project_construction_steps.md`: v2.0.0 → v2.1.0
+- `project_construction_steps.zh-TW.md`: v2.0.0 → v2.1.0
+- `README.md`: v2.0.0 → v2.1.0
+- `README.zh-TW.md`: v2.0.0 → v2.1.0
+- `step_1_checklist.md`: v2.0.0 → v2.1.0
+- `step_1_checklist.zh-TW.md`: v2.0.0 → v2.1.0
+- `stablecoin_strategy_overview.md`: v2.0.0 → v2.1.0
+- `stablecoin_strategy_overview.zh-TW.md`: v2.0.0 → v2.1.0
+- `technical_paper.md`: v2.0.0 → v2.1.0
+- `technical_paper.en.md`: v2.0.0 → v2.1.0
+- `VERSION_CHANGELOG.md`: v1.0.0 → v1.1.0
+- `VERSION_CHANGELOG.zh-TW.md`: v1.0.0 → v1.1.0
+
+**主要變更：**
+
+#### 階段結構強化：
+1. **增加 Phase 1.5："設計卓越"**
+   - 在核心功能與去中心化擴展之間增加專門的 UI/UX 開發階段
+   - 專注於將功能基礎設施轉換為消費級產品
+   - 時間線：Phase 1 與 Phase 2 之間的 4 個月
+   - 更新所有文檔的實現時間表
+
+2. **文檔一致性更新**
+   - 更新所有受影響檔案的版本號
+   - 增強階段引用和時間表調整
+   - 確保跨文檔的階段編號一致性
+
+3. **戰略時間表調整**
+   - Phase 2 時間表從 2026年Q1 調整到 2026年Q2 以容納 Phase 1.5
+   - 增加具體的設計卓越交付成果和成功指標
+   - 更新所有文檔檔案的開發路線圖
 
 ### 2025年7月4日 - 文檔更新 v2.0.0
 
