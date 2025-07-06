@@ -18,6 +18,34 @@ We follow semantic versioning for documentation:
 
 ## Changelog
 
+### July 6, 2025 - Part 5.1 Security Setup Complete v2.1.1
+
+**Type:** Security Implementation Milestone - Part 5.1 Complete
+
+**Files Updated:**
+- `step_1_checklist.md`: Part 5.1 Security Setup completed
+- `step_1_checklist.zh-TW.md`: Chinese version synchronized
+- Enhanced API security with environment validation and key management
+- Smart contract security scanning tools configured
+
+**Security Enhancements:**
+- ✅ Environment variable validation with Zod schema
+- ✅ Secure key management utilities with encryption/decryption
+- ✅ Enhanced authentication and authorization middleware
+- ✅ Slither static analysis for smart contracts
+- ✅ Security-focused ESLint rules and vulnerability scanning
+- ✅ API security auditing tools (npm audit, Snyk)
+
+**Technical Details:**
+- Added comprehensive environment validation (`packages/api/src/config/env.ts`)
+- Implemented secure key management (`packages/api/src/config/keys.ts`)
+- Enhanced auth middleware with role-based permissions
+- Configured Slither for contract security analysis
+- Added security scanning scripts and configuration
+- Integrated security linting with ESLint security plugin
+
+**Ready for:** Part 5.2 Deployment Infrastructure
+
 ### July 6, 2025 - Part 4 Quality Assurance Complete v2.1.0
 
 **Type:** Major Implementation Milestone - Quality Assurance Setup Complete
