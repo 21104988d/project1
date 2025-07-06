@@ -1,6 +1,6 @@
 # The Project - Version Changelog
 
-**Document Version:** v1.1.0  
+**Document Version:** v1.1.1  
 **Created:** July 4, 2025  
 **Last Updated:** July 6, 2025  
 **Purpose:** Track all version changes across project documentation with dates and descriptions
@@ -17,6 +17,46 @@ We follow semantic versioning for documentation:
 ---
 
 ## Changelog
+
+### July 6, 2025 - README Cleanup and Documentation Optimization v2.1.2
+
+**Type:** Documentation Improvement - Cleanup and Streamlining
+
+**Files Updated:**
+- `README.md`: v2.1.1 → v2.1.2 (English)
+- `README.zh-TW.md`: v2.1.1 → v2.1.2 (Chinese)
+- `VERSION_CHANGELOG.md`: v1.1.0 → v1.1.1
+
+**Improvements Made:**
+
+#### README Optimization:
+- **Streamlined content** from 344 lines to 236 lines while maintaining all essential information
+- **Removed redundant sections** including verbose explanations and repetitive bullet points
+- **Consolidated technology stack** descriptions for better readability
+- **Simplified project overview** with clearer, more concise descriptions
+- **Unified development status** presentation with three-tier structure
+- **Cleaned up repository structure** focusing on main workspace
+- **Streamlined quick start** guide with essential commands only
+
+#### Chinese Version Synchronization:
+- **Complete alignment** of Chinese README with updated English structure
+- **Consistent formatting** and section organization
+- **Accurate translations** of new streamlined content
+- **Maintained bilingual documentation parity**
+
+#### Content Quality:
+- **Preserved all technical details** while improving presentation
+- **Enhanced readability** through better section organization
+- **Focused documentation links** on most essential references
+- **Practical command examples** without overwhelming detail
+- **Professional project presentation** suitable for stakeholders
+
+**Benefits:**
+- Improved developer onboarding experience
+- Clearer project status communication
+- Better maintainability of documentation
+- Enhanced professional presentation
+- Consistent bilingual documentation
 
 ### July 6, 2025 - Part 5.1 Security Setup Complete v2.1.1
 
