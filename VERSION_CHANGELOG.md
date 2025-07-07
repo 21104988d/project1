@@ -1,8 +1,8 @@
 # The Project - Version Changelog
 
-**Document Version:** v1.1.1  
+**Document Version:** v1.1.2  
 **Created:** July 4, 2025  
-**Last Updated:** July 6, 2025  
+**Last Updated:** July 7, 2025  
 **Purpose:** Track all version changes across project documentation with dates and descriptions
 
 ---
@@ -17,6 +17,44 @@ We follow semantic versioning for documentation:
 ---
 
 ## Changelog
+
+### July 7, 2025 - Part 1.5 Structure Standardization v2.1.3
+
+**Type:** Documentation Refactor - Structural Consistency Update
+
+**Files Updated:**
+- `stablecoin_strategy_overview.md`: v2.1.0 → v2.1.1
+- `stablecoin_strategy_overview.zh-TW.md`: v2.1.0 → v2.1.1
+- `project_construction_steps.md`: v2.1.0 → v2.1.1
+- `project_construction_steps.zh-TW.md`: v2.1.0 → v2.1.1
+- `README.md`: Added Part 1.5 to development roadmap
+- `README.zh-TW.md`: Added Part 1.5 to development roadmap
+- `VERSION_CHANGELOG.md`: v1.1.1 → v1.1.2
+
+**Key Changes:**
+
+#### Structure Standardization:
+- **Renamed Phase 1.5 → Part 1.5** for consistency with existing part structure
+- **Updated timeline** from 4 months to 4 weeks (Month 2.5) for focused design development
+- **Repositioned Part 1.5** between Part 1 (USDT Core) and Part 2 (USDC Expansion)
+- **Enhanced focus** on UI/UX design excellence and mobile-first PWA development
+
+#### Documentation Updates:
+- **Complete bilingual synchronization** across English and Chinese documentation
+- **Consistent terminology** throughout all files
+- **Updated table of contents** and cross-references
+- **Enhanced Part 1.5 descriptions** with clear objectives and success criteria
+
+#### Development Flow Enhancement:
+- **Part 1:** USDT Core (Months 1-2) - Core functionality
+- **Part 1.5:** Design Excellence (Month 2.5) - UI/UX transformation  
+- **Part 2:** USDC Expansion (Months 3-4) - Multi-stablecoin support
+
+**Benefits:**
+- Improved structural consistency across documentation
+- Clear design-focused development phase
+- Better integration between functional and expansion phases
+- Enhanced bilingual documentation alignment
 
 ### July 6, 2025 - README Cleanup and Documentation Optimization v2.1.2
 
@@ -249,19 +287,21 @@ We follow semantic versioning for documentation:
 
 | Document | Current Version | Last Updated | Status |
 |----------|----------------|--------------|---------|
-| README.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| README.zh-TW.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| technical_paper.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| technical_paper.en.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| project_construction_steps.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| project_construction_steps.zh-TW.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| step_1_checklist.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| step_1_checklist.zh-TW.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| stablecoin_strategy_overview.md | v2.0.0 | July 4, 2025 | ✅ Updated |
-| stablecoin_strategy_overview.zh-TW.md | v2.0.0 | July 4, 2025 | ✅ Updated |
+| README.md | v2.1.2 | July 6, 2025 | ✅ Updated |
+| README.zh-TW.md | v2.1.2 | July 6, 2025 | ✅ Updated |
+| technical_paper.md | v2.1.0 | July 4, 2025 | ✅ Updated |
+| technical_paper.en.md | v2.1.0 | July 4, 2025 | ✅ Updated |
+| project_construction_steps.md | v2.1.1 | July 7, 2025 | ✅ Updated |
+| project_construction_steps.zh-TW.md | v2.1.1 | July 7, 2025 | ✅ Updated |
+| step_1_checklist.md | v2.1.0 | July 6, 2025 | ✅ Updated |
+| step_1_checklist.zh-TW.md | v2.1.0 | July 6, 2025 | ✅ Updated |
+| stablecoin_strategy_overview.md | v2.1.1 | July 7, 2025 | ✅ Updated |
+| stablecoin_strategy_overview.zh-TW.md | v2.1.1 | July 7, 2025 | ✅ Updated |
+| BILINGUAL_DOCS.md | v2.0.0 | July 4, 2025 | ✅ Updated |
 | approved_stablecoin_arbitrage_list.md | v1.0.0 | June 2025 | 📅 Pending Review |
 | approved_stablecoin_arbitrage_list.zh-TW.md | v1.0.0 | June 2025 | 📅 Pending Review |
-| BILINGUAL_DOCS.md | v1.0.0 | June 2025 | 📅 Pending Review |
+| VERSION_CHANGELOG.md | v1.1.2 | July 7, 2025 | ✅ Updated |
+| VERSION_CHANGELOG.zh-TW.md | ❓ Missing | - | 🚨 Needs Creation |
 
 ---
 
