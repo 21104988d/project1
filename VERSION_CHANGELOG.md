@@ -18,6 +18,50 @@ We follow semantic versioning for documentation:
 
 ## Changelog
 
+### July 7, 2025 - Documentation Consistency and Format Standardization v2.1.4
+
+**Type:** Documentation Standardization - Comprehensive Consistency Update
+
+**Files Updated:**
+- `README.zh-TW.md`: Format consistency fixes
+- `project_construction_steps.zh-TW.md`: Number format and structure standardization
+- `stablecoin_strategy_overview.zh-TW.md`: Number format consistency
+- `step_1_checklist.zh-TW.md`: Title and numbering standardization
+- `VERSION_CHANGELOG.zh-TW.md`: Number format consistency
+- `approved_stablecoin_arbitrage_list.zh-TW.md`: Mathematical expression formatting
+- `technical_paper.md`: Date format standardization
+- `technical_paper.en.md`: Content structure alignment
+
+**Key Changes:**
+
+#### Number Format Standardization (Chinese Documents):
+- **Consistent Arabic Numerals**: Changed "第 1-2 個月" to "第1-2個月" (removed spaces around numbers)
+- **Section Numbering**: Standardized "第 1.5 部分" to "第1.5部分" throughout all documents
+- **Mathematical Expressions**: Fixed spacing in expressions like ">100萬美元" to ">100萬美元", "5+ 橋接" to "5+橋接"
+- **Step Numbering**: Changed "步驟 1.1.1" to "步驟1.1.1" for consistency
+
+#### Content Structure Fixes:
+- **Removed Duplicate Content**: Fixed duplicate "目的" lines in project construction steps
+- **Title Standardization**: Updated step 1 checklist title from "第一步：第一階段第 1 部分" to "第1步：第1階段第1部分"
+- **Version Alignment**: Synchronized technical paper versions and date formats between English and Chinese
+
+#### Bilingual Documentation Consistency:
+- **Date Format Standardization**: Updated Chinese technical paper date from "July 5, 2025" to "2025年7月5日"
+- **Content Alignment**: Ensured English and Chinese document pairs have matching structure and content
+- **Terminology Consistency**: Standardized "Phase 1.5" to "Part 1.5" references across all documents
+
+#### Professional Formatting:
+- **Mathematical Operators**: Removed unnecessary spaces around operators in Chinese (e.g., ≥85/100, >99.9%)
+- **Technical Terms**: Consistent formatting for technical specifications and requirements
+- **Section Headers**: Uniform numbering and spacing throughout all documents
+
+**Benefits:**
+- Enhanced professional appearance and readability
+- Consistent user experience across bilingual documentation
+- Improved document maintainability and clarity
+- Standardized formatting conventions for future updates
+- Better alignment between English and Chinese content
+
 ### July 7, 2025 - Part 1.5 Structure Standardization v2.1.3
 
 **Type:** Documentation Refactor - Structural Consistency Update

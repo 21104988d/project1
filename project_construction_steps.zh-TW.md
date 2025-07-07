@@ -3,8 +3,7 @@
 **版本：** v2.1.1  
 **日期：** 2025年7月7日  
 **最後更新：** 將 Phase 1.5 改為 Part 1.5 以保持部分結構一致性  
-**目的：** 構建以穩定幣為重點的跨鏈 DApp 系統的全面逐步指南  
-**目的：** 建構專注於穩定幣的跨鏈 DApp 系統的全面逐步指南
+**目的：** 構建以穩定幣為重點的跨鏈 DApp 系統的全面逐步指南
 
 ---
 
@@ -39,7 +38,7 @@
 
 ## 第一階段：V1 "StableBridge Foundation" - 中心化路由聚合器
 
-### 第 1 部分："USDT Core" (第 1-2 個月)
+### 第1部分："USDT Core" (第1-2個月)
 
 **目標：** 建立堅實的 USDT 跨鏈基礎設施
 
@@ -117,9 +116,9 @@ interface IUSDTRouterProtocol {
 └── CurveUSDTIntegration.sol       # USDT 穩定池
 ```
 
-#### 步驟 1.2.2：智能合約實現步驟
+#### 步驟1.2.2：智能合約實現步驟
 
-**步驟 A：基礎設施合約**
+**步驟A：基礎設施合約**
 1. 實現具有以下函數的 `USDTEntrypointContract`：
    - `executeUSDTSwap(USDTSwapParams memory params)`：主要入口點
    - `batchExecuteUSDT(USDTSwapParams[] memory params)`：批次操作
@@ -129,7 +128,7 @@ interface IUSDTRouterProtocol {
    - `resolveUSDTSwap(bytes32 swapId, address recipient)`：完成跨鏈 USDT 交換
    - `claimUSDTRefund(bytes32 swapId)`：處理失敗交易
 
-**步驟 B：USDT DEX 整合合約**
+**步驟B：USDT DEX 整合合約**
 1. 為主要 DEX 創建標準化適配器：
    ```solidity
    contract UniswapV3USDTAdapter {
@@ -154,7 +153,7 @@ interface IUSDTRouterProtocol {
    }
    ```
 
-#### 步驟 1.2.3：安全實現
+#### 步驟1.2.3：安全實現
 1. **存取控制**：實現 OpenZeppelin 的 AccessControl
 2. **重入防護**：在所有外部函數上使用 ReentrancyGuard
 3. **可暫停性**：為緊急情況實現斷路器
@@ -162,9 +161,9 @@ interface IUSDTRouterProtocol {
 
 ### 1.3 USDT 路由引擎開發
 
-#### 步驟 1.3.1：數據聚合層
+#### 步驟1.3.1：數據聚合層
 
-**步驟 A：USDT 價格饋送基礎設施**
+**步驟A：USDT 價格饋送基礎設施**
 ```typescript
 // routing-engine/src/aggregation/USDTPriceFeedManager.ts
 class USDTPriceFeedManager {
@@ -182,7 +181,7 @@ class USDTPriceFeedManager {
 }
 ```
 
-**步驟 B：USDT 流動性監控**
+**步驟B：USDT 流動性監控**
 ```typescript
 // routing-engine/src/aggregation/USDTLiquidityMonitor.ts
 class USDTLiquidityMonitor {
@@ -195,9 +194,9 @@ class USDTLiquidityMonitor {
 }
 ```
 
-#### 步驟 1.3.2：USDT 路徑發現引擎
+#### 步驟1.3.2：USDT 路徑發現引擎
 
-**步驟 A：USDT 圖模型實現**
+**步驟A：USDT 圖模型實現**
 ```typescript
 // routing-engine/src/pathfinding/USDTGraphBuilder.ts
 class USDTGraphBuilder {
