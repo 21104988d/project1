@@ -63,11 +63,19 @@ scripts\setup-review.bat        # Windows
 # 導航到項目目錄
 cd the-project
 
-# 啟動應用程序
-npm run review:start
+# 啟動應用程序（選擇一種方法）：
+
+# 方法1：僅啟動前端
+cd packages/frontend
+npm run dev
+# 在 http://localhost:5173 打開
+
+# 方法2：完整開發環境
+# （從 the-project 目錄）
+npm run dev
 ```
 
-**瀏覽器自動打開到**：`http://localhost:3000` 🎉
+**前端在以下位置打開**：`http://localhost:5173` 🎉
 
 ---
 
@@ -188,17 +196,23 @@ npm run review:start
 ### 快速修復
 
 ```bash
-# 如果出現問題
-cd the-project
-npm run clean
+# 如果設置過程中出現問題
+cd the-project/packages/frontend
 npm install
-npm run review:start
+npm run dev
+# 然後在瀏覽器中打開 http://localhost:5173
+
+# 替代方案：構建和預覽
+npm run build
+npm run preview
 ```
 
 ### 常見問題
 
 - **空白頁面**：清除瀏覽器緩存（Ctrl+F5 或 Cmd+R）
 - **無法啟動**：檢查Node.js版本（運行 `node -v`）
+- **端口衝突**：使用不同端口 `npm run dev -- --port 3001`
+- **設置腳本錯誤**：可以忽略 json 工具警告 - 使用上面的手動命令
 - **載入緩慢**：關閉其他瀏覽器標籤和應用程序
 
 ### 文檔
@@ -214,17 +228,20 @@ npm run review:start
 # 首先導航到項目目錄
 cd the-project
 
-# 啟動審查環境
-npm run review:start
+# 啟動前端進行審查
+cd packages/frontend
+npm run dev
+# 在 http://localhost:5173 打開
 
-# 構建並提供生產版本
-npm run review:build
+# 構建並預覽生產版本
+npm run build
+npm run preview
 
-# 清理並重新安裝依賴項
-npm run clean
+# 清理並重新安裝（如果需要）
+rm -rf node_modules package-lock.json && npm install
 
 # 打開文檔
-open ../review-docs/REVIEW_GUIDE.md
+open ../../review-docs/REVIEW_GUIDE.md
 ```
 
 ---

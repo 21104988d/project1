@@ -63,11 +63,19 @@ scripts\setup-review.bat        # Windows
 # Navigate to the project directory
 cd the-project
 
-# Start the application
-npm run review:start
+# Start the application (choose one method):
+
+# Method 1: Start frontend only
+cd packages/frontend
+npm run dev
+# Opens at http://localhost:5173
+
+# Method 2: Full development environment  
+# (from the-project directory)
+npm run dev
 ```
 
-**Browser automatically opens to**: `http://localhost:3000` 🎉
+**Frontend opens at**: `http://localhost:5173` 🎉
 
 ---
 
@@ -188,17 +196,23 @@ npm run review:start
 ### Quick Fixes
 
 ```bash
-# If something goes wrong
-cd the-project
-npm run clean
+# If something goes wrong during setup
+cd the-project/packages/frontend
 npm install
-npm run review:start
+npm run dev
+# Then open http://localhost:5173 in your browser
+
+# Alternative: Build and preview
+npm run build
+npm run preview
 ```
 
 ### Common Issues
 
 - **Blank page**: Clear browser cache (Ctrl+F5 or Cmd+R)
 - **Won't start**: Check Node.js version (run `node -v`)
+- **Port conflicts**: Use a different port with `npm run dev -- --port 3001`
+- **Setup script errors**: Safe to ignore json utility warnings - use manual commands above
 - **Slow loading**: Close other browser tabs and applications
 
 ### Documentation
@@ -214,17 +228,20 @@ npm run review:start
 # Navigate to project directory first
 cd the-project
 
-# Start review environment
-npm run review:start
+# Start frontend for review
+cd packages/frontend
+npm run dev
+# Opens at http://localhost:5173
 
-# Build and serve production version
-npm run review:build
+# Build and preview production version
+npm run build
+npm run preview
 
-# Clean and reinstall dependencies
-npm run clean
+# Clean and reinstall (if needed)
+rm -rf node_modules package-lock.json && npm install
 
 # Open documentation
-open ../review-docs/REVIEW_GUIDE.md
+open ../../review-docs/REVIEW_GUIDE.md
 ```
 
 ---

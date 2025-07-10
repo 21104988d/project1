@@ -277,20 +277,37 @@ EOF
 
 echo -e "${GREEN}✅ Review documentation created${NC}"
 
-# Create review-specific npm scripts
+# Create review-specific npm scripts in the project directory
 echo -e "${YELLOW}⚙️  Adding review commands...${NC}"
+
+# Go back to the-project directory to modify its package.json
+cd the-project
 
 # Add review scripts to package.json if they don't exist
 if ! grep -q "review:start" package.json; then
-    # Create temporary package.json with review scripts
-    npx json -I -f package.json -e 'this.scripts["review:start"]="concurrently \"npm run frontend:dev\" \"npm run api:dev\" \"npm run review:open\""'
-    npx json -I -f package.json -e 'this.scripts["review:open"]="sleep 5 && npx open-cli http://localhost:3000"'
-    npx json -I -f package.json -e 'this.scripts["review:build"]="npm run build && npm run review:serve"'
-    npx json -I -f package.json -e 'this.scripts["review:serve"]="npm run frontend:preview"'
-    npx json -I -f package.json -e 'this.scripts["clean"]="rimraf node_modules package-lock.json && npm install"'
+    # Install json tool if not available
+    if ! command -v json &> /dev/null; then
+        echo "Installing json utility..."
+        npm install -g json || echo "Warning: Could not install json utility globally"
+    fi
+    
+    # Try to add review scripts, but don't fail if json tool isn't available
+    if command -v json &> /dev/null; then
+        json -I -f package.json -e 'this.scripts["review:start"]="concurrently \"npm run frontend:dev\" \"npm run api:dev\" \"npm run review:open\"" || true' 2>/dev/null || echo "Note: Review scripts not added automatically"
+        json -I -f package.json -e 'this.scripts["review:open"]="sleep 5 && npx open-cli http://localhost:3000"' 2>/dev/null || true
+        json -I -f package.json -e 'this.scripts["review:build"]="npm run build && npm run review:serve"' 2>/dev/null || true
+        json -I -f package.json -e 'this.scripts["review:serve"]="npm run frontend:preview"' 2>/dev/null || true
+        json -I -f package.json -e 'this.scripts["clean"]="rimraf node_modules package-lock.json && npm install"' 2>/dev/null || true
+        echo -e "${GREEN}✅ Review commands added${NC}"
+    else
+        echo -e "${YELLOW}Note: Review commands can be run manually - see documentation${NC}"
+    fi
+else
+    echo -e "${GREEN}✅ Review commands already exist${NC}"
 fi
 
-echo -e "${GREEN}✅ Review commands added${NC}"
+# Go back to main repository for final messages
+cd ..
 
 # Final success message
 echo -e "${GREEN}"
@@ -304,10 +321,11 @@ echo "1. Navigate to the project directory:"
 echo -e "   ${YELLOW}cd the-project${NC}"
 echo ""
 echo "2. Start the review application:"
-echo -e "   ${YELLOW}npm run review:start${NC}"
+echo -e "   ${YELLOW}cd packages/frontend${NC}"
+echo -e "   ${YELLOW}npm run dev${NC}"
 echo ""
 echo "3. Open your browser to:"
-echo -e "   ${YELLOW}http://localhost:3000${NC}"
+echo -e "   ${YELLOW}http://localhost:5173${NC}"
 echo ""
 echo "4. Read the review guide:"
 echo -e "   ${YELLOW}cat ../review-docs/REVIEW_GUIDE.md${NC}"
