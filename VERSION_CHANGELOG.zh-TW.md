@@ -18,6 +18,55 @@
 
 ## 更新日誌
 
+### 2024年12月19日 - 部門審查程序實施 v2.2.2
+
+**類型：** 次要功能添加 - 部門審查基礎設施
+
+**已更新文件：**
+- `the-project/REVIEW_README.md`：綜合部門審查設置指南
+- `the-project/scripts/setup-review.sh`：Unix/Linux/macOS 自動化一鍵設置腳本
+- `the-project/scripts/setup-review.bat`：Windows 用戶自動化設置腳本
+- `the-project/docker-compose.review.yml`：容器化審查環境
+- `the-project/nginx-review-frontend.conf`：類生產環境 nginx 配置
+- `the-project/packages/frontend/Dockerfile.review`：前端審查容器
+- `the-project/packages/frontend/src/demo/`：演示數據和審查界面組件
+- `the-project/package.json`：添加審查腳本和命令
+- `the-project/README.md`：添加部門審查章節
+- `VERSION_CHANGELOG.zh-TW.md`：此更新日誌條目
+
+**主要變更：**
+
+#### 部門審查基礎設施：
+- **一鍵設置**：創建跨平台部署的自動化設置腳本
+- **非技術友好**：面向業務利益相關者的綜合文檔
+- **演示環境**：預載真實數據以進行有意義的評估
+- **生產模擬**：鏡像生產部署的 Docker 設置
+- **審查清單**：設計、用戶體驗和功能的結構化評估標準
+
+#### 設置組件：
+1. **自動化腳本**：平台特定設置自動化（bash/batch）
+2. **演示數據**：真實的餘額、交易和用戶場景
+3. **審查界面**：用於指導評估的特殊演示組件
+4. **Docker 環境**：隔離的容器化審查部署
+5. **跨平台支持**：支持 Windows、macOS 和 Linux
+6. **性能優化**：使用 nginx 的類生產服務
+
+#### 審查功能：
+- **引導教程**：為非技術審查者提供的交互式幫助系統
+- **演示場景**：用於系統性評估的預定義用戶流程
+- **移動測試**：響應式設計驗證工具
+- **性能指標**：加載速度和無障礙合規性
+- **信任評估**：金融應用信心和安全性評估
+
+**完成狀態：**
+- 部門審查程序：✅ 完成，準備進行利益相關者評估
+- 跨平台設置腳本：✅ 完成（bash + batch）
+- Docker 審查環境：✅ 完成並測試
+- 演示數據和場景：✅ 完成，包含真實內容
+- 文檔和指南：✅ 完成，適合非技術用戶
+
+---
+
 ### 2024年12月19日 - 第1.5階段設計卓越清單創建 v2.2.1
 
 **類型：** 次要文檔添加 - 新階段清單
