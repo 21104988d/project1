@@ -5,7 +5,7 @@
 **Last Updated:** July 4, 2025 - Added version control syst### **Documentation Metrics**
 
 ### **Coverage Statistics**
-- **Total Documents:** 9 major documentation files
+- **Total Documents:** 10 major documentation files
 - **Bilingual Coverage:** 100% complete
 - **Total Content:** ~60,000+ words across both languages
 - **Technical Depth:** Comprehensive from overview to implementation details
@@ -24,6 +24,7 @@
 | **Construction Steps** | `project_construction_steps.md` | `project_construction_steps.zh-TW.md` | ✅ Complete |
 | **Phase 1 Checklist** | `step_1_checklist.md` | `step_1_checklist.zh-TW.md` | ✅ Complete |
 | **Phase 1.5 Design Excellence** | `step_1.5_design_excellence_checklist.md` | `step_1.5_design_excellence_checklist.zh-TW.md` | ✅ Complete |
+| **Department Review Program** | `REVIEW_README.md` | `REVIEW_README.zh-TW.md` | ✅ Complete |
 | **Strategy Overview** | `stablecoin_strategy_overview.md` | `stablecoin_strategy_overview.zh-TW.md` | ✅ Complete |
 | **Version Control Log** | `VERSION_CHANGELOG.md` | `VERSION_CHANGELOG.zh-TW.md` | ✅ Complete |
 | **Monorepo README** | `the-project/README.md` | `the-project/README.zh-TW.md` | ✅ Complete |
