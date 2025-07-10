@@ -78,7 +78,41 @@ yarn dev
 yarn build
 ```
 
-## 🏗️ Development Roadmap
+## � Department Review Program
+
+**For Non-Technical Department Reviews**: Starting from Part 1.5, the dapp can be easily reviewed by other departments using our automated setup program.
+
+### Quick Review Setup (3 minutes)
+
+```bash
+# Clone this repository
+git clone [repository-url]
+cd [repository-name]
+
+# Run one-click setup
+./scripts/setup-review.sh    # For Mac/Linux
+# OR
+scripts\setup-review.bat     # For Windows
+
+# Start reviewing
+cd the-project
+npm run review:start
+```
+
+**What reviewers get:**
+- ✅ **Demo Environment**: Pre-loaded with realistic data
+- ✅ **No Wallet Required**: Safe demo mode for evaluation
+- ✅ **Mobile Testing**: Responsive design validation
+- ✅ **Guided Tour**: Interactive help and feature explanations
+- ✅ **Review Checklist**: Structured evaluation criteria
+
+**Key Files:**
+- `REVIEW_README.md` - Complete setup guide for departments
+- `scripts/setup-review.*` - Automated setup scripts
+- `review-docs/` - Evaluation guides and troubleshooting
+- `docker-compose.review.yml` - Containerized review environment
+
+## �🏗️ Development Roadmap
 
 ### Phase 1: USDT Core Foundation (Current)
 **Timeline:** Months 1-2  

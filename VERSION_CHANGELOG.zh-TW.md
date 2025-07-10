@@ -18,6 +18,53 @@
 
 ## 更新日誌
 
+### 2024年12月19日 - 部門審查程序重構 v2.2.3
+
+**類型：** 修訂更新 - 儲存庫結構優化
+
+**已更新文件：**
+- `REVIEW_README.md`：從子模組移至主儲存庫根目錄
+- `scripts/setup-review.sh`：從子模組移出並更新路徑
+- `scripts/setup-review.bat`：從子模組移出並更新 Windows 支持
+- `docker-compose.review.yml`：從子模組移出並修正路徑
+- `nginx-review-frontend.conf`：從子模組移至主儲存庫
+- `README.md`：更新部門審查章節路徑
+- `VERSION_CHANGELOG.zh-TW.md`：此更新日誌條目
+
+**主要變更：**
+
+#### 儲存庫結構優化：
+- **移動審查程序**：將所有部門審查文件從 `the-project/` 子模組重新定位到主儲存庫根目錄
+- **改善可訪問性**：其他部門現在可以在克隆主儲存庫後立即訪問審查工具
+- **更新路徑**：所有腳本和文檔已更新以從主儲存庫結構工作
+- **簡化設置**：審查程序現在無需導航到子模組即可工作
+
+#### 文件重新定位：
+- `the-project/REVIEW_README.md` → `REVIEW_README.md`
+- `the-project/scripts/setup-review.*` → `scripts/setup-review.*`
+- `the-project/docker-compose.review.yml` → `docker-compose.review.yml`
+- `the-project/nginx-review-frontend.conf` → `nginx-review-frontend.conf`
+
+#### 更新用法：
+- **設置命令**：`./scripts/setup-review.sh`（從主儲存庫根目錄）
+- **審查流程**：需要時自動導航到 `the-project/` 目錄
+- **文檔**：在主儲存庫根目錄創建 `review-docs/`
+- **Docker 支持**：`docker-compose.review.yml` 從主儲存庫工作
+
+**優勢：**
+- **更容易訪問**：部門審查者無需了解子模組結構
+- **更好的組織**：審查工具邏輯上屬於儲存庫根級別
+- **簡化入門**：從主儲存庫克隆的一鍵設置
+- **更清潔的架構**：將開發工具與應用程序代碼分離
+
+**完成狀態：**
+- 文件重新定位：✅ 完成
+- 路徑更新：✅ 完成
+- 文檔更新：✅ 完成
+- 跨平台兼容性：✅ 維持
+
+---
+
 ### 2024年12月19日 - 部門審查程序實施 v2.2.2
 
 **類型：** 次要功能添加 - 部門審查基礎設施

@@ -18,6 +18,53 @@ We follow semantic versioning for documentation:
 
 ## Changelog
 
+### December 19, 2024 - Department Review Program Restructure v2.2.3
+
+**Type:** Patch Update - Repository Structure Optimization
+
+**Files Updated:**
+- `REVIEW_README.md`: Moved from submodule to main repository root
+- `scripts/setup-review.sh`: Moved from submodule with updated paths
+- `scripts/setup-review.bat`: Moved from submodule with updated Windows support
+- `docker-compose.review.yml`: Moved from submodule with corrected paths
+- `nginx-review-frontend.conf`: Moved from submodule to main repository
+- `README.md`: Updated department review section paths
+- `VERSION_CHANGELOG.md`: This changelog entry
+
+**Key Changes:**
+
+#### Repository Structure Optimization:
+- **Moved Review Program**: Relocated all department review files from `the-project/` submodule to main repository root
+- **Improved Accessibility**: Other departments can now access review tools immediately after cloning main repository
+- **Updated Paths**: All scripts and documentation updated to work from main repository structure
+- **Simplified Setup**: Review program now works without navigating into submodule
+
+#### File Relocations:
+- `the-project/REVIEW_README.md` → `REVIEW_README.md`
+- `the-project/scripts/setup-review.*` → `scripts/setup-review.*`
+- `the-project/docker-compose.review.yml` → `docker-compose.review.yml`
+- `the-project/nginx-review-frontend.conf` → `nginx-review-frontend.conf`
+
+#### Updated Usage:
+- **Setup Command**: `./scripts/setup-review.sh` (from main repo root)
+- **Review Process**: Auto-navigates to `the-project/` directory when needed
+- **Documentation**: `review-docs/` created in main repository root
+- **Docker Support**: `docker-compose.review.yml` works from main repo
+
+**Benefits:**
+- **Easier Access**: Department reviewers don't need to understand submodule structure
+- **Better Organization**: Review tools logically belong at repository root level
+- **Simplified Onboarding**: One-command setup from main repository clone
+- **Cleaner Architecture**: Separates development tools from application code
+
+**Completion Status:**
+- File relocation: ✅ Complete
+- Path updates: ✅ Complete  
+- Documentation updates: ✅ Complete
+- Cross-platform compatibility: ✅ Maintained
+
+---
+
 ### December 19, 2024 - Department Review Program Implementation v2.2.2
 
 **Type:** Minor Feature Addition - Department Review Infrastructure
