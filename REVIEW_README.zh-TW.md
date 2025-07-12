@@ -56,6 +56,12 @@ curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/com
 
 > **注意**：如果自動設置失敗，腳本會提供詳細的手動設置說明。這通常是由於儲存庫結構問題，但可以輕鬆解決。
 
+> **推薦**：為了最佳體驗，建議使用 **GitHub Codespaces**：
+> 1. 訪問：https://github.com/21104988d/project1
+> 2. 點擊 "Code" → "Codespaces" → "Create codespace"
+> 3. 等待環境加載完成
+> 4. 運行：`cd the-project/packages/frontend && npm run dev`
+
 #### **選項2：手動逐步進行**
 
 **步驟1：安裝Git**
@@ -304,6 +310,21 @@ npm run dev
 
 # 5. 如果 the-project 完全空白，請檢查主儲存庫文檔
 ```
+
+### 🚀 **推薦解決方案：GitHub Codespaces**
+
+如果遇到儲存庫結構問題，最簡單的解決方案是使用 GitHub Codespaces：
+
+1. **訪問儲存庫**：https://github.com/21104988d/project1
+2. **創建 Codespace**：點擊 "Code" → "Codespaces" → "Create codespace"
+3. **等待設置完成**：Codespaces 會自動設置完整環境
+4. **啟動應用**：運行 `cd the-project/packages/frontend && npm run dev`
+
+✅ **優勢**：
+- 無需本地安裝任何軟件
+- 自動解決所有儲存庫結構問題
+- 預配置的開發環境
+- 即時可用的演示環境
 
 ### 文檔
 

@@ -232,13 +232,13 @@ setup_application() {
                         print_status "Successfully navigated to: $(pwd)"
                     else
                         print_error "Submodule initialization didn't create the expected directory structure"
-                        show_manual_setup_instructions
+                        show_alternative_setup_options
                         return 1
                     fi
                 else
                     print_warning "Submodule initialization failed or no submodules configured"
-                    print_status "This repository may need manual setup"
-                    show_manual_setup_instructions
+                    print_status "This appears to be a repository structure issue"
+                    show_alternative_setup_options
                     return 1
                 fi
             else
@@ -303,6 +303,41 @@ show_manual_setup_instructions() {
     echo -e "   ${BLUE}npm run dev${NC}"
     echo ""
     print_status "For support, please check the repository documentation or contact the project maintainers."
+}
+
+# Function to show alternative setup options for the-project repository issue
+show_alternative_setup_options() {
+    echo ""
+    print_status "REPOSITORY STRUCTURE ISSUE DETECTED"
+    print_status "==================================="
+    echo ""
+    print_status "The 'the-project' directory is tracked as a Git submodule but is not properly configured."
+    print_status "This is a known issue. Here are your options:"
+    echo ""
+    
+    print_status "OPTION 1: Use GitHub Codespaces (Recommended)"
+    echo -e "   ${BLUE}1. Go to: https://github.com/21104988d/project1${NC}"
+    echo -e "   ${BLUE}2. Click 'Code' → 'Codespaces' → 'Create codespace'${NC}"
+    echo -e "   ${BLUE}3. Wait for the environment to load${NC}"
+    echo -e "   ${BLUE}4. Run: cd the-project/packages/frontend && npm run dev${NC}"
+    echo ""
+    
+    print_status "OPTION 2: Manual File Setup (Advanced)"
+    echo -e "   ${BLUE}1. Create the directory structure:${NC}"
+    echo -e "   ${BLUE}   mkdir -p the-project/packages/frontend${NC}"
+    echo -e "   ${BLUE}2. Contact the repository maintainers for the frontend source code${NC}"
+    echo -e "   ${BLUE}3. Or check if there's a separate repository for 'the-project'${NC}"
+    echo ""
+    
+    print_status "OPTION 3: Quick Demo Access"
+    echo -e "   ${BLUE}For a quick demo without setup, try these alternatives:${NC}"
+    echo -e "   ${BLUE}• Check if there's a live demo URL in the main README${NC}"
+    echo -e "   ${BLUE}• Look for alternative demo instructions${NC}"
+    echo -e "   ${BLUE}• Contact the project team for immediate access${NC}"
+    echo ""
+    
+    print_error "Current automated setup cannot continue"
+    print_status "Recommendation: Use GitHub Codespaces for the fastest setup experience"
 }
 
 # Main execution

@@ -56,6 +56,12 @@ curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/com
 
 > **Note**: If the automated setup fails, the script will provide detailed manual setup instructions. This is usually due to repository structure issues but can be easily resolved.
 
+> **Recommended**: For the best experience, use **GitHub Codespaces**:
+> 1. Go to: https://github.com/21104988d/project1
+> 2. Click "Code" → "Codespaces" → "Create codespace"
+> 3. Wait for the environment to load
+> 4. Run: `cd the-project/packages/frontend && npm run dev`
+
 #### **Option 2: Manual Step-by-Step**
 
 **Step 1: Install Git**
@@ -315,6 +321,21 @@ npm run dev
 
 # 5. If the-project is completely empty, check main repository documentation
 ```
+
+### 🚀 **Recommended Solution: GitHub Codespaces**
+
+If you encounter repository structure issues, the easiest solution is to use GitHub Codespaces:
+
+1. **Go to Repository**: https://github.com/21104988d/project1
+2. **Create Codespace**: Click "Code" → "Codespaces" → "Create codespace"
+3. **Wait for Setup**: Codespaces will automatically set up the complete environment
+4. **Start App**: Run `cd the-project/packages/frontend && npm run dev`
+
+✅ **Benefits**:
+- No local software installation required
+- Automatically resolves all repository structure issues
+- Pre-configured development environment
+- Instant access to demo environment
 
 ### 📚 Documentation
 
