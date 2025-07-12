@@ -1,0 +1,120 @@
+{
+  "name": "The Project - Full Stack DApp Development",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "azureDnsAutoDetection": true,
+      "installDockerBuildx": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    }
+  },
+
+  "runArgs": [
+    "--privileged"
+  ],
+
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind,consistency=cached"
+  ],
+
+  "containerEnv": {
+    "DOCKER_HOST": "unix:///var/run/docker-host.sock"
+  },
+
+  "workspaceFolder": "/workspaces/project1",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/project1,type=bind,consistency=cached",
+
+  "forwardPorts": [
+    3000,
+    3001,
+    3002,
+    5432,
+    6379,
+    8080,
+    8081,
+    9187,
+    9121
+  ],
+
+  "portsAttributes": {
+    "3000": {
+      "label": "Frontend",
+      "onAutoForward": "notify"
+    },
+    "3001": {
+      "label": "API",
+      "onAutoForward": "notify"
+    },
+    "3002": {
+      "label": "Routing Engine",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    },
+    "6379": {
+      "label": "Redis",
+      "onAutoForward": "silent"
+    },
+    "8080": {
+      "label": "PgAdmin",
+      "onAutoForward": "silent"
+    },
+    "8081": {
+      "label": "Redis Commander",
+      "onAutoForward": "silent"
+    }
+  },
+
+  "onCreateCommand": "bash .devcontainer/setup.sh",
+  "postCreateCommand": "cd the-project && npm install",
+  "postStartCommand": "echo '🚀 Dev container ready! Use ./rebuild-containers.sh to start services.'",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-vscode.test-adapter-converter",
+        "hbenl.vscode-test-explorer",
+        "streetsidesoftware.code-spell-checker",
+        "mikestead.dotenv",
+        "ms-playwright.playwright"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "files.exclude": {
+          "**/node_modules": true,
+          "**/dist": true,
+          "**/.git": true
+        },
+        "search.exclude": {
+          "**/node_modules": true,
+          "**/dist": true
+        },
+        "docker.showStartPage": false
+      }
+    }
+  },
+
+  "remoteUser": "node"
+}
