@@ -193,7 +193,9 @@ clone_repository() {
     cd "$TARGET_DIR"
     
     print_status "Repository cloned successfully!"
-    print_status "Current directory: $(pwd)"
+    print_status "Current directory after clone: $(pwd)"
+    print_status "Contents of current directory:"
+    ls -la
 }
 
 # Step 4: Setup application
@@ -202,13 +204,105 @@ setup_application() {
     
     # Navigate to frontend directory
     print_status "Navigating to frontend directory..."
-    cd the-project/packages/frontend
+    print_status "Current working directory: $(pwd)"
+    
+    # Check if we're already in the cloned repository
+    if [ -d "the-project/packages/frontend" ]; then
+        print_status "Found the-project/packages/frontend in current directory"
+        cd the-project/packages/frontend
+    elif [ -d "../the-project/packages/frontend" ]; then
+        print_status "Found the-project/packages/frontend in parent directory"
+        cd ../the-project/packages/frontend
+    else
+        print_warning "Could not find the-project/packages/frontend directory"
+        
+        # Check if the-project directory exists but is empty
+        if [ -d "the-project" ]; then
+            if [ -z "$(ls -A the-project)" ]; then
+                print_warning "Found the-project directory but it's empty"
+                print_status "This is likely due to a Git submodule or nested repository issue"
+                print_status "Attempting to fix this automatically..."
+                
+                # Try to initialize submodules
+                print_status "Trying git submodule initialization..."
+                if git submodule update --init --recursive 2>/dev/null; then
+                    print_status "Submodule initialization successful"
+                    if [ -d "the-project/packages/frontend" ]; then
+                        cd the-project/packages/frontend
+                        print_status "Successfully navigated to: $(pwd)"
+                    else
+                        print_error "Submodule initialization didn't create the expected directory structure"
+                        show_manual_setup_instructions
+                        return 1
+                    fi
+                else
+                    print_warning "Submodule initialization failed or no submodules configured"
+                    print_status "This repository may need manual setup"
+                    show_manual_setup_instructions
+                    return 1
+                fi
+            else
+                print_status "the-project directory exists but doesn't contain packages/frontend"
+                print_status "Contents of the-project:"
+                ls -la the-project/
+                show_manual_setup_instructions
+                return 1
+            fi
+        else
+            print_error "the-project directory not found at all"
+            print_status "Available directories:"
+            ls -la
+            show_manual_setup_instructions
+            return 1
+        fi
+    fi
+    
+    print_status "Successfully navigated to: $(pwd)"
     
     # Install dependencies
     print_status "Installing npm dependencies..."
-    npm install
+    if npm install; then
+        print_status "Dependencies installed successfully!"
+    else
+        print_error "Failed to install dependencies"
+        print_status "You may need to run 'npm install' manually from: $(pwd)"
+        return 1
+    fi
     
     print_status "Setup completed successfully!"
+}
+
+# Function to show manual setup instructions
+show_manual_setup_instructions() {
+    echo ""
+    print_status "MANUAL SETUP REQUIRED"
+    print_status "===================="
+    echo ""
+    print_status "The automated setup cannot complete due to repository structure issues."
+    print_status "Please try the following manual steps:"
+    echo ""
+    print_status "1. Navigate to the cloned repository:"
+    echo -e "   ${BLUE}cd $(pwd)${NC}"
+    echo ""
+    print_status "2. Check current directory contents:"
+    echo -e "   ${BLUE}ls -la${NC}"
+    echo ""
+    print_status "3. If you see 'the-project' directory, check its contents:"
+    echo -e "   ${BLUE}ls -la the-project/${NC}"
+    echo ""
+    print_status "4. Try initializing git submodules:"
+    echo -e "   ${BLUE}git submodule update --init --recursive${NC}"
+    echo ""
+    print_status "5. Alternative: If the-project should be cloned separately:"
+    echo -e "   ${BLUE}rm -rf the-project${NC}"
+    echo -e "   ${BLUE}git clone [THE-PROJECT-REPO-URL] the-project${NC}"
+    echo ""
+    print_status "6. Once the-project/packages/frontend exists:"
+    echo -e "   ${BLUE}cd the-project/packages/frontend${NC}"
+    echo -e "   ${BLUE}npm install${NC}"
+    echo -e "   ${BLUE}npm run dev${NC}"
+    echo ""
+    print_status "For support, please check the repository documentation or contact the project maintainers."
 }
 
 # Main execution
@@ -218,14 +312,44 @@ main() {
     install_git
     install_nodejs
     clone_repository
-    setup_application
+    
+    # Try to setup application, but handle failure gracefully
+    if ! setup_application; then
+        echo ""
+        print_error "Automated setup could not be completed"
+        print_status "This usually means the repository structure needs manual setup"
+        echo ""
+        print_status "MANUAL SETUP INSTRUCTIONS:"
+        echo "=========================="
+        print_status "1. Check if you're in the right directory:"
+        echo -e "   ${BLUE}pwd${NC}"
+        echo ""
+        print_status "2. Look for existing project structure:"
+        echo -e "   ${BLUE}ls -la${NC}"
+        echo ""
+        print_status "3. If you see the-project directory, try:"
+        echo -e "   ${BLUE}cd the-project${NC}"
+        echo -e "   ${BLUE}ls -la${NC}"
+        echo ""
+        print_status "4. Check if this is a git submodule:"
+        echo -e "   ${BLUE}git submodule status${NC}"
+        echo -e "   ${BLUE}git submodule update --init --recursive${NC}"
+        echo ""
+        print_status "5. If the-project has packages/frontend, navigate there:"
+        echo -e "   ${BLUE}cd packages/frontend${NC}"
+        echo -e "   ${BLUE}npm install${NC}"
+        echo -e "   ${BLUE}npm run dev${NC}"
+        echo ""
+        print_status "Please refer to the project documentation for more details"
+        exit 1
+    fi
     
     echo ""
     echo "🎉 Setup completed successfully!"
     echo "=================================================="
     echo ""
+    print_status "You are now in the frontend directory: $(pwd)"
     print_status "To start the application, run:"
-    echo -e "${BLUE}cd $(pwd)${NC}"
     echo -e "${BLUE}npm run dev${NC}"
     echo ""
     print_status "Or use the direct command:"

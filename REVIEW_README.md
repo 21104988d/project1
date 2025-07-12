@@ -54,6 +54,8 @@ project1/                                # Main Repository Root
 curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/complete-setup.sh | bash
 ```
 
+> **Note**: If the automated setup fails, the script will provide detailed manual setup instructions. This is usually due to repository structure issues but can be easily resolved.
+
 #### **Option 2: Manual Step-by-Step**
 
 **Step 1: Install Git**
@@ -289,6 +291,30 @@ npm run preview
 | **Port already in use** | Change port: `npm run dev -- --port 3001` |
 | **Permission denied** | On Linux/Mac: `sudo chmod +x scripts/complete-setup.sh` |
 | **Setup script fails** | Install manually: Git from git-scm.com, Node.js from nodejs.org |
+
+### 🔧 Repository Structure Issues
+
+If the one-click setup fails with "the-project directory is empty":
+
+```bash
+# 1. Check your current location
+pwd
+ls -la
+
+# 2. Try initializing submodules
+git submodule update --init --recursive
+
+# 3. If still failing, navigate manually
+cd the-project
+ls -la
+
+# 4. If packages/frontend exists
+cd packages/frontend
+npm install
+npm run dev
+
+# 5. If the-project is completely empty, check main repository documentation
+```
 
 ### 📚 Documentation
 

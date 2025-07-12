@@ -54,6 +54,8 @@ project1/                                # 主儲存庫根目錄
 curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/complete-setup.sh | bash
 ```
 
+> **注意**：如果自動設置失敗，腳本會提供詳細的手動設置說明。這通常是由於儲存庫結構問題，但可以輕鬆解決。
+
 #### **選項2：手動逐步進行**
 
 **步驟1：安裝Git**
@@ -278,6 +280,30 @@ npm run preview
 - **端口衝突**：使用不同端口 `npm run dev -- --port 3001`
 - **設置腳本錯誤**：可以忽略 json 工具警告 - 使用上面的手動命令
 - **載入緩慢**：關閉其他瀏覽器標籤和應用程序
+
+### 🔧 儲存庫結構問題
+
+如果一鍵設置失敗並提到 "the-project directory is empty"：
+
+```bash
+# 1. 檢查當前位置
+pwd
+ls -la
+
+# 2. 嘗試初始化子模組
+git submodule update --init --recursive
+
+# 3. 如果仍然失敗，手動導航
+cd the-project
+ls -la
+
+# 4. 如果 packages/frontend 存在
+cd packages/frontend
+npm install
+npm run dev
+
+# 5. 如果 the-project 完全空白，請檢查主儲存庫文檔
+```
 
 ### 文檔
 
