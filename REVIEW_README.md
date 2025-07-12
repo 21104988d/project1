@@ -2,7 +2,23 @@
     ├── packages/frontend/               # React DApp
     │   ├── src/demo/                    # Demo components and data
     │   └── Dockerfile.review            # Review container
-    └── ...other packagesw Program
+    └── ...othe### 🔧 Repository Structure Issues
+
+If the one-click setup fails:
+
+```bash
+# 1. Check your current location
+pwd
+ls -la
+
+# 2. Navigate directly to project (unified repository structure)
+cd the-project/packages/frontend
+
+# 3. Install and start
+npm install
+npm run dev
+
+# 4. If the-project doesn't exist, re-clone the repositoryam
 
 **Complete Setup Guide for Non-Technical Department Reviews**
 

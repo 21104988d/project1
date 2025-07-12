@@ -3,6 +3,11 @@
 # 🚀 Complete Setup Script for The Project Review
 # This script installs ALL prerequisites and sets up the review environment
 # Works on: Windows (Git Bash/WSL), macOS, Linux
+# 
+# Repository Structure: Single unified repository (no submodules)
+# - project1/ (main repo) 
+#   └── the-project/ (regular directory, not submodule)
+#       └── packages/frontend/ (React application)
 
 set -e  # Exit on any error
 
@@ -211,31 +216,33 @@ setup_application() {
         print_status "Found the-project/packages/frontend in current directory"
         cd the-project/packages/frontend
     elif [ -d "../the-project/packages/frontend" ]; then
-        print_status "Found the-project/packages/frontend in parent directory"
+        print_status "Found the-project/packages/frontend in parent directory" 
         cd ../the-project/packages/frontend
     else
         print_warning "Could not find the-project/packages/frontend directory"
         
-        # Check if the-project directory exists but is empty
+        # Check if the-project directory exists
         if [ -d "the-project" ]; then
-            if [ -z "$(ls -A the-project)" ]; then
-                print_warning "Found the-project directory but it's empty"
-                print_status "This appears to be a repository structure issue"
-                print_status "The project directory was not properly cloned"
+            if [ ! -d "the-project/packages" ]; then
+                print_error "the-project directory exists but is missing the packages subdirectory"
+                print_status "This may indicate an incomplete clone or corrupted repository"
+                print_status "Contents of the-project:"
+                ls -la the-project/ | head -10
                 show_alternative_setup_options
                 return 1
             else
                 print_status "the-project directory exists but doesn't contain packages/frontend"
-                print_status "Contents of the-project:"
-                ls -la the-project/
+                print_status "Contents of the-project/packages:"
+                ls -la the-project/packages/
                 show_manual_setup_instructions
                 return 1
             fi
         else
             print_error "the-project directory not found at all"
+            print_status "This indicates the repository was not cloned properly"
             print_status "Available directories:"
             ls -la
-            show_manual_setup_instructions
+            show_alternative_setup_options
             return 1
         fi
     fi

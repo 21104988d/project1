@@ -6,6 +6,11 @@
 # Purpose: One-click setup for department reviews of the dapp
 # Usage: ./scripts/setup-review.sh (run from main repository root)
 # Target: Non-technical departments reviewing Part 1.5 Design Excellence
+# 
+# Repository Structure: Single unified repository (no submodules)
+# - project1/ (main repo)
+#   └── the-project/ (regular directory, not submodule)
+#       └── packages/frontend/ (React application)
 # =================================================================
 
 set -e  # Exit on any error
@@ -54,20 +59,23 @@ fi
 if [ ! -d "the-project" ]; then
     echo -e "${RED}❌ Please run this script from the main repository root${NC}"
     echo "   Make sure you can see the 'the-project' directory"
+    echo "   Current directory: $(pwd)"
+    echo "   Expected structure: project1/the-project/"
     exit 1
 fi
 
-# Check if the-project directory has content
-if [ -z "$(ls -A the-project 2>/dev/null)" ]; then
-    echo -e "${RED}❌ The 'the-project' directory is empty${NC}"
+# Check if the-project directory has the expected structure
+if [ ! -d "the-project/packages/frontend" ]; then
+    echo -e "${RED}❌ Frontend package not found${NC}"
     echo ""
-    echo "REPOSITORY STRUCTURE ISSUE DETECTED:"
-    echo "===================================="
-    echo "The project directory is not properly cloned or missing files."
+    echo "SETUP ISSUE DETECTED:"
+    echo "===================="
+    echo "The frontend package directory is missing."
+    echo "Expected: the-project/packages/frontend/"
     echo ""
-    echo "RECOMMENDED SOLUTIONS:"
+    echo "SOLUTIONS:"
     echo ""
-    echo "1. Use GitHub Codespaces (Easiest):"
+    echo "1. Use GitHub Codespaces (Recommended):"
     echo "   • Go to: https://github.com/21104988d/project1"
     echo "   • Click 'Code' → 'Codespaces' → 'Create codespace'"
     echo "   • Run: cd the-project/packages/frontend && npm run dev"
@@ -77,7 +85,6 @@ if [ -z "$(ls -A the-project 2>/dev/null)" ]; then
     echo "   cd project1"
     echo "   ./scripts/setup-review.sh"
     echo ""
-    echo "3. Try the complete setup script instead:"
     echo "   curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/complete-setup.sh | bash"
     echo ""
     echo "For department reviews, we recommend using GitHub Codespaces for the most"

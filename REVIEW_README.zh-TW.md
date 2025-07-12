@@ -296,12 +296,10 @@ npm run preview
 pwd
 ls -la
 
-# 2. 直接導航到項目（不再需要子模組）
-cd the-project
-ls -la
+# 2. 直接導航到項目（統一儲存庫結構）
+cd the-project/packages/frontend
 
-# 3. 如果 packages/frontend 存在，直接啟動
-cd packages/frontend
+# 3. 安裝並啟動
 npm install
 npm run dev
 
