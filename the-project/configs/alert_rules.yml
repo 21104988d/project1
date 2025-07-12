@@ -1,0 +1,65 @@
+groups:
+  - name: stablecoin-arbitrage-alerts
+    rules:
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 80
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'High memory usage detected'
+          description: 'Memory usage is above 80%'
+
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'High CPU usage detected'
+          description: 'CPU usage is above 80%'
+
+      - alert: APIResponseTime
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job="api"}[5m])) > 2
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'API response time is high'
+          description: '95th percentile response time is above 2 seconds'
+
+      - alert: PostgreSQLDown
+        expr: up{job="postgres"} == 0
+        for: 0m
+        labels:
+          severity: critical
+        annotations:
+          summary: 'PostgreSQL is down'
+          description: 'PostgreSQL database is not responding'
+
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 0m
+        labels:
+          severity: critical
+        annotations:
+          summary: 'Redis is down'
+          description: 'Redis cache is not responding'
+
+      - alert: APIDown
+        expr: up{job="api"} == 0
+        for: 0m
+        labels:
+          severity: critical
+        annotations:
+          summary: 'API service is down'
+          description: 'Main API service is not responding'
+
+      - alert: RoutingEngineDown
+        expr: up{job="routing-engine"} == 0
+        for: 0m
+        labels:
+          severity: critical
+        annotations:
+          summary: 'Routing Engine is down'
+          description: 'Routing Engine service is not responding'

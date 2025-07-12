@@ -1,0 +1,42 @@
+{
+  "name": "@theproject/contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for cross-chain routing",
+  "private": true,
+  "scripts": {
+    "build": "hardhat compile",
+    "test": "hardhat test",
+    "test:unit": "hardhat test test/unit/**/*.ts",
+    "test:integration": "hardhat test test/integration/**/*.ts",
+    "deploy": "hardhat run scripts/deploy.ts",
+    "deploy:goerli": "hardhat run scripts/deploy/deploy-goerli.ts --network goerli",
+    "deploy:sepolia": "hardhat run scripts/deploy/deploy-sepolia.ts --network sepolia",
+    "deploy:arbitrum-goerli": "hardhat run scripts/deploy/deploy-arbitrumGoerli.ts --network arbitrumGoerli",
+    "deploy:arbitrum-sepolia": "hardhat run scripts/deploy/deploy-arbitrumSepolia.ts --network arbitrumSepolia",
+    "verify": "hardhat run scripts/verify.ts",
+    "verify:network": "npx ts-node ../../scripts/verify-contracts.ts",
+    "clean": "hardhat clean",
+    "coverage": "hardhat coverage",
+    "size": "hardhat size-contracts",
+    "typechain": "hardhat typechain",
+    "docs": "hardhat docgen",
+    "security:slither": "slither .",
+    "security:mythril": "myth analyze contracts/",
+    "security:check": "npm run security:slither && npm run security:mythril"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/node": "^20.0.0",
+    "hardhat": "^2.17.0",
+    "hardhat-docgen": "^1.3.0",
+    "typechain": "^8.3.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2025-07-07T12:00:00.000Z",
+  "protocols": [
+    {
+      "name": "LayerZero",
+      "type": "message_passing",
+      "networks": ["ethereum", "arbitrum", "polygon", "bsc"],
+      "endpoints": {
+        "goerli": "0xbfD2135BFfbb0B5378b56643c2Df8a87552Bfa23",
+        "arbitrumGoerli": "0x6aB5Ae6822647046626e83ee6dB8187151E1d5ab",
+        "sepolia": "0xae92d5aD7583AD66E49A0c67BAd18F6ba52dDDc1",
+        "arbitrumSepolia": "0x6098e96a28E02f27B1e6BD381f870F1C8Bd169d3"
+      },
+      "gasLimits": {
+        "ethereum": 200000,
+        "arbitrum": 800000,
+        "polygon": 300000,
+        "bsc": 300000
+      },
+      "fees": {
+        "ethereum": "0.001",
+        "arbitrum": "0.0001",
+        "polygon": "0.01",
+        "bsc": "0.001"
+      }
+    },
+    {
+      "name": "Wormhole",
+      "type": "message_passing",
+      "networks": ["ethereum", "arbitrum", "polygon", "bsc", "solana"],
+      "endpoints": {
+        "goerli": "0x706abc4E45D419950511e474C7B9Ed348A4a716c",
+        "arbitrumGoerli": "0x23908A62110e21C04F3A4e011d24F901F911744A",
+        "sepolia": "0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78",
+        "arbitrumSepolia": "0x41d2f98d32F39b046dCf5F8e8A5d36aE3D21a711",
+        "solanaDevnet": "DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe"
+      },
+      "gasLimits": {
+        "ethereum": 150000,
+        "arbitrum": 600000,
+        "polygon": 250000,
+        "bsc": 250000,
+        "solana": 10000
+      },
+      "fees": {
+        "ethereum": "0.002",
+        "arbitrum": "0.0002",
+        "polygon": "0.02",
+        "bsc": "0.002",
+        "solana": "0.001"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "from": "ethereum",
+      "to": "arbitrum",
+      "protocols": ["LayerZero", "Wormhole", "Stargate"],
+      "estimatedTime": "5-15 minutes",
+      "estimatedCost": "0.001-0.003 ETH"
+    },
+    {
+      "from": "arbitrum",
+      "to": "ethereum",
+      "protocols": ["LayerZero", "Wormhole", "Stargate"],
+      "estimatedTime": "7-10 days (withdrawal)",
+      "estimatedCost": "0.0001-0.0003 ETH"
+    },
+    {
+      "from": "ethereum",
+      "to": "solana",
+      "protocols": ["Wormhole"],
+      "estimatedTime": "5-20 minutes",
+      "estimatedCost": "0.002 ETH + 0.001 SOL"
+    },
+    {
+      "from": "solana",
+      "to": "ethereum",
+      "protocols": ["Wormhole"],
+      "estimatedTime": "5-20 minutes",
+      "estimatedCost": "0.001 SOL + 0.002 ETH"
+    }
+  ],
+  "security": {
+    "maxSlippage": "0.5",
+    "timeoutSeconds": 600,
+    "retryAttempts": 3,
+    "gasLimitMultiplier": 1.2
+  },
+  "monitoring": {
+    "healthCheckInterval": 30000,
+    "alertThresholds": {
+      "responseTimeMs": 30000,
+      "failureRate": 0.05,
+      "gasUsageIncrease": 2.0
+    }
+  }
+}

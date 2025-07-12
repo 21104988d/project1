@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ES2022"],
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "incremental": true,
+    "composite": false,
+    "baseUrl": ".",
+    "paths": {
+      "@theproject/shared/*": ["packages/shared/src/*"],
+      "@theproject/shared": ["packages/shared/src/index"],
+      "@theproject/api/*": ["packages/api/src/*"],
+      "@theproject/contracts/*": ["packages/contracts/src/*"],
+      "@theproject/frontend/*": ["packages/frontend/src/*"],
+      "@theproject/routing-engine/*": ["packages/routing-engine/src/*"]
+    }
+  },
+  "include": ["packages/*/src/**/*", "packages/*/test/**/*", "tests/**/*", "scripts/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "cache",
+    "artifacts",
+    "typechain-types",
+    "**/*.test.js",
+    "**/*.spec.js"
+  ],
+  "references": [
+    { "path": "./packages/shared" },
+    { "path": "./packages/api" },
+    { "path": "./packages/contracts" },
+    { "path": "./packages/frontend" },
+    { "path": "./packages/routing-engine" }
+  ]
+}

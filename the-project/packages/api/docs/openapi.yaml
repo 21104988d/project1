@@ -1,0 +1,455 @@
+openapi: 3.0.3
+info:
+  title: Cross-Chain DApp Router API
+  description: |
+    RESTful API for cross-chain token routing and arbitrage operations.
+    Specializes in stablecoin arbitrage opportunities (USDT/USDC focus).
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@theproject.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3001
+    description: Development server
+  - url: https://api.theproject.com
+    description: Production server
+
+paths:
+  /api/v1/quote:
+    post:
+      tags:
+        - Quotes
+      summary: Get swap quote
+      description: Request a quote for swapping tokens across chains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuoteRequest"
+      responses:
+        "200":
+          description: Successful quote response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuoteResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          description: Rate limit exceeded
+        "500":
+          description: Internal server error
+
+  /api/v1/route:
+    post:
+      tags:
+        - Routes
+      summary: Find optimal route
+      description: Find the optimal route for cross-chain token swaps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RouteRequest"
+      responses:
+        "200":
+          description: Optimal route found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RouteResponse"
+
+  /api/v1/execute:
+    post:
+      tags:
+        - Execution
+      summary: Execute swap
+      description: Execute a cross-chain token swap
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExecuteRequest"
+      responses:
+        "200":
+          description: Swap execution initiated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExecuteResponse"
+
+  /api/v1/status/{transactionId}:
+    get:
+      tags:
+        - Status
+      summary: Get transaction status
+      description: Get the status of a cross-chain transaction
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Transaction ID to check status for
+      responses:
+        "200":
+          description: Transaction status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusResponse"
+
+  /api/v1/tokens:
+    get:
+      tags:
+        - Tokens
+      summary: Get supported tokens
+      description: Get list of supported tokens by chain
+      parameters:
+        - name: chainId
+          in: query
+          schema:
+            type: integer
+          description: Filter by chain ID
+      responses:
+        "200":
+          description: List of supported tokens
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Token"
+
+  /api/v1/chains:
+    get:
+      tags:
+        - Chains
+      summary: Get supported chains
+      description: Get list of supported blockchain networks
+      responses:
+        "200":
+          description: List of supported chains
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Chain"
+
+components:
+  schemas:
+    QuoteRequest:
+      type: object
+      required:
+        - tokenIn
+        - tokenOut
+        - amountIn
+        - chainIdIn
+        - chainIdOut
+      properties:
+        tokenIn:
+          type: string
+          description: Input token address
+          example: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+        tokenOut:
+          type: string
+          description: Output token address
+          example: "0xA0b86a33E6448193c3Cf4FB58E3E2e80e96C5B8B"
+        amountIn:
+          type: string
+          description: Input amount in token units
+          example: "1000000"
+        chainIdIn:
+          type: integer
+          description: Source chain ID
+          example: 1
+        chainIdOut:
+          type: integer
+          description: Destination chain ID
+          example: 42161
+        slippageTolerance:
+          type: number
+          description: Maximum slippage tolerance (0-1)
+          example: 0.005
+        deadline:
+          type: integer
+          description: Transaction deadline (Unix timestamp)
+          example: 1735689600
+
+    QuoteResponse:
+      type: object
+      properties:
+        quoteId:
+          type: string
+          example: "quote_123456789"
+        amountOut:
+          type: string
+          description: Expected output amount
+          example: "999000"
+        amountOutMin:
+          type: string
+          description: Minimum output amount after slippage
+          example: "994005"
+        priceImpact:
+          type: number
+          description: Price impact percentage
+          example: 0.001
+        gasEstimate:
+          type: string
+          description: Estimated gas cost
+          example: "21000"
+        route:
+          $ref: "#/components/schemas/Route"
+        validUntil:
+          type: integer
+          description: Quote expiration timestamp
+          example: 1735689600
+
+    RouteRequest:
+      type: object
+      required:
+        - tokenIn
+        - tokenOut
+        - amountIn
+        - chainIdIn
+        - chainIdOut
+      properties:
+        tokenIn:
+          type: string
+        tokenOut:
+          type: string
+        amountIn:
+          type: string
+        chainIdIn:
+          type: integer
+        chainIdOut:
+          type: integer
+        maxHops:
+          type: integer
+          description: Maximum number of hops
+          example: 3
+
+    RouteResponse:
+      type: object
+      properties:
+        routes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Route"
+        bestRoute:
+          $ref: "#/components/schemas/Route"
+
+    ExecuteRequest:
+      type: object
+      required:
+        - quoteId
+        - userAddress
+        - signature
+      properties:
+        quoteId:
+          type: string
+          example: "quote_123456789"
+        userAddress:
+          type: string
+          description: User's wallet address
+          example: "0x742d35Cc6634C0532925a3b8D465C7d2c6B9e27F"
+        signature:
+          type: string
+          description: Transaction signature
+        maxGasPrice:
+          type: string
+          description: Maximum gas price willing to pay
+
+    ExecuteResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          example: "tx_987654321"
+        status:
+          type: string
+          enum: [pending, confirmed, failed]
+          example: "pending"
+        txHash:
+          type: string
+          description: Blockchain transaction hash
+          example: "0x123...abc"
+        estimatedTime:
+          type: integer
+          description: Estimated completion time in seconds
+          example: 900
+
+    StatusResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          example: "tx_987654321"
+        status:
+          type: string
+          enum: [pending, confirmed, failed, cancelled]
+        steps:
+          type: array
+          items:
+            $ref: "#/components/schemas/TransactionStep"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    TransactionStep:
+      type: object
+      properties:
+        stepId:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+        txHash:
+          type: string
+        chainId:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+
+    Route:
+      type: object
+      properties:
+        routeId:
+          type: string
+        path:
+          type: array
+          items:
+            $ref: "#/components/schemas/RouteStep"
+        totalGasEstimate:
+          type: string
+        totalTimeEstimate:
+          type: integer
+          description: Estimated time in seconds
+        totalFees:
+          type: string
+
+    RouteStep:
+      type: object
+      properties:
+        stepId:
+          type: string
+        type:
+          type: string
+          enum: [swap, bridge]
+        protocol:
+          type: string
+          example: "Uniswap V3"
+        chainId:
+          type: integer
+        tokenIn:
+          type: string
+        tokenOut:
+          type: string
+        amountIn:
+          type: string
+        amountOut:
+          type: string
+        gasEstimate:
+          type: string
+        fee:
+          type: string
+
+    Token:
+      type: object
+      properties:
+        address:
+          type: string
+          example: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+        symbol:
+          type: string
+          example: "USDT"
+        name:
+          type: string
+          example: "Tether USD"
+        decimals:
+          type: integer
+          example: 6
+        chainId:
+          type: integer
+          example: 1
+        logoURI:
+          type: string
+          format: uri
+          example: "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png"
+
+    Chain:
+      type: object
+      properties:
+        chainId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Ethereum"
+        symbol:
+          type: string
+          example: "ETH"
+        rpcUrl:
+          type: string
+          format: uri
+          example: "https://eth.llamarpc.com"
+        explorerUrl:
+          type: string
+          format: uri
+          example: "https://etherscan.io"
+        logoURI:
+          type: string
+          format: uri
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "INVALID_TOKEN"
+        message:
+          type: string
+          example: "Token address is not valid"
+        details:
+          type: object
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+security:
+  - ApiKeyAuth: []
+
+tags:
+  - name: Quotes
+    description: Token swap quotation operations
+  - name: Routes
+    description: Route finding and optimization
+  - name: Execution
+    description: Transaction execution
+  - name: Status
+    description: Transaction status tracking
+  - name: Tokens
+    description: Supported token information
+  - name: Chains
+    description: Supported blockchain networks
