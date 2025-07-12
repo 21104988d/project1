@@ -37,17 +37,81 @@ project1/                                # 主儲存庫根目錄
 
 ---
 
-## ⚡ 快速開始（3分鐘）
+## ⚡ 一鍵完整設置（5分鐘）
 
-### 1. 先決條件
+### 🔧 先決條件自動安裝
 
-- **Node.js 18+**：從 [nodejs.org](https://nodejs.org/) 下載
-- **現代瀏覽器**：Chrome、Firefox、Safari 或 Edge
+**只有VS Code？** 沒問題！我們的設置處理一切：
 
-### 2. 一鍵設置
+#### **選項1：自動化一切（推薦）**
+
+1. **打開VS Code**
+2. **按 `Ctrl+`` （反引號）打開終端**
+3. **複製並貼上這一個命令：**
 
 ```bash
+# 這會安裝Git、Node.js、克隆儲存庫並啟動應用
+curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/complete-setup.sh | bash
+```
+
+#### **選項2：手動逐步進行**
+
+**步驟1：安裝Git**
+```bash
+# Windows（在VS Code終端中）
+winget install Git.Git
+# 或從以下網址下載：https://git-scm.com/downloads
+
+# macOS
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install git
+
+# Linux（Ubuntu/Debian）
+sudo apt update && sudo apt install git -y
+```
+
+**步驟2：安裝Node.js**
+```bash
+# Windows
+winget install OpenJS.NodeJS
+
+# macOS  
+brew install node
+
+# Linux
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+**步驟3：克隆和設置**
+```bash
 # 克隆此儲存庫
+git clone https://github.com/21104988d/project1
+cd project1
+
+# 運行自動設置腳本
+./scripts/setup-review.sh       # Mac/Linux
+# 或
+scripts\setup-review.bat        # Windows
+```
+
+### 🚀 啟動應用程式
+
+```bash
+# 導航到前端目錄
+cd the-project/packages/frontend
+
+# 啟動應用程式（適用於Codespaces和本地）：
+npx vite --host 0.0.0.0 --port 5173
+# 或使用npm腳本：
+npm run dev
+
+# 應用程式將在以下位置可用：
+# - http://localhost:5173（本地）
+# - 自動轉發端口（在Codespaces中）
+```
+
+**前端打開位置**：`http://localhost:5173` 🎉
 git clone https://github.com/21104988d/project1
 cd project1
 
