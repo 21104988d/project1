@@ -93,6 +93,13 @@ fi
 echo "📋 Setting up development aliases..."
 cat >> ~/.bashrc << 'EOF'
 
+# Load warning suppression environment variables
+if [ -f /workspaces/project1/the-project/.env.warnings ]; then
+    set -a
+    source /workspaces/project1/the-project/.env.warnings
+    set +a
+fi
+
 # The Project Development Aliases
 alias ll='ls -alF'
 alias la='ls -A'

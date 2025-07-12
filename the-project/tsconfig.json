@@ -44,13 +44,8 @@
     "artifacts",
     "typechain-types",
     "**/*.test.js",
-    "**/*.spec.js"
-  ],
-  "references": [
-    { "path": "./packages/shared" },
-    { "path": "./packages/api" },
-    { "path": "./packages/contracts" },
-    { "path": "./packages/frontend" },
-    { "path": "./packages/routing-engine" }
+    "**/*.spec.js",
+    "**/dist/**/*",
+    "packages/*/dist/**/*"
   ]
 }

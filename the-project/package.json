@@ -50,7 +50,8 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f",
-    "clean": "rimraf node_modules package-lock.json packages/*/node_modules packages/*/dist && npm install",
+    "clean": "./scripts/npm-silent.sh install",
+    "install:silent": "./scripts/npm-silent.sh install",
     "review:setup": "./scripts/setup-review.sh",
     "review:start": "concurrently \"npm run api:dev\" \"npm run frontend:dev\" \"npm run review:open\"",
     "review:open": "sleep 5 && npx open-cli http://localhost:3000",
@@ -58,7 +59,7 @@
     "review:serve": "npm run frontend:preview",
     "review:demo": "VITE_DEMO_MODE=true npm run frontend:dev",
     "review:clean": "npm run clean && npm run review:setup",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
