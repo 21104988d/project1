@@ -1,4 +1,8 @@
-# 🚀 The Project - Department Review Program
+# 🚀 The Project - Department └── the-project/                         # Development Monorepo (Integrated)
+    ├── packages/frontend/               # React DApp
+    │   ├── src/demo/                    # Demo components and data
+    │   └── Dockerfile.review            # Review container
+    └── ...other packagesw Program
 
 **Complete Setup Guide for Non-Technical Department Reviews**
 
@@ -310,7 +314,7 @@ ls -la
 # 2. Try initializing submodules
 git submodule update --init --recursive
 
-# 3. If still failing, navigate manually
+# 3. If still failing, navigate directly to project (no submodules needed)
 cd the-project
 ls -la
 
@@ -319,7 +323,7 @@ cd packages/frontend
 npm install
 npm run dev
 
-# 5. If the-project is completely empty, check main repository documentation
+# 5. If the-project doesn't exist, re-clone the repository
 ```
 
 ### 🚀 **Recommended Solution: GitHub Codespaces**

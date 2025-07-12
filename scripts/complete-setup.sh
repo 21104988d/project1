@@ -220,27 +220,10 @@ setup_application() {
         if [ -d "the-project" ]; then
             if [ -z "$(ls -A the-project)" ]; then
                 print_warning "Found the-project directory but it's empty"
-                print_status "This is likely due to a Git submodule or nested repository issue"
-                print_status "Attempting to fix this automatically..."
-                
-                # Try to initialize submodules
-                print_status "Trying git submodule initialization..."
-                if git submodule update --init --recursive 2>/dev/null; then
-                    print_status "Submodule initialization successful"
-                    if [ -d "the-project/packages/frontend" ]; then
-                        cd the-project/packages/frontend
-                        print_status "Successfully navigated to: $(pwd)"
-                    else
-                        print_error "Submodule initialization didn't create the expected directory structure"
-                        show_alternative_setup_options
-                        return 1
-                    fi
-                else
-                    print_warning "Submodule initialization failed or no submodules configured"
-                    print_status "This appears to be a repository structure issue"
-                    show_alternative_setup_options
-                    return 1
-                fi
+                print_status "This appears to be a repository structure issue"
+                print_status "The project directory was not properly cloned"
+                show_alternative_setup_options
+                return 1
             else
                 print_status "the-project directory exists but doesn't contain packages/frontend"
                 print_status "Contents of the-project:"
@@ -290,14 +273,10 @@ show_manual_setup_instructions() {
     print_status "3. If you see 'the-project' directory, check its contents:"
     echo -e "   ${BLUE}ls -la the-project/${NC}"
     echo ""
-    print_status "4. Try initializing git submodules:"
-    echo -e "   ${BLUE}git submodule update --init --recursive${NC}"
+    print_status "4. Try re-cloning the repository:"
+    echo -e "   ${BLUE}rm -rf project1 && git clone https://github.com/21104988d/project1${NC}"
     echo ""
-    print_status "5. Alternative: If the-project should be cloned separately:"
-    echo -e "   ${BLUE}rm -rf the-project${NC}"
-    echo -e "   ${BLUE}git clone [THE-PROJECT-REPO-URL] the-project${NC}"
-    echo ""
-    print_status "6. Once the-project/packages/frontend exists:"
+    print_status "5. Once the-project/packages/frontend exists:"
     echo -e "   ${BLUE}cd the-project/packages/frontend${NC}"
     echo -e "   ${BLUE}npm install${NC}"
     echo -e "   ${BLUE}npm run dev${NC}"
@@ -311,7 +290,7 @@ show_alternative_setup_options() {
     print_status "REPOSITORY STRUCTURE ISSUE DETECTED"
     print_status "==================================="
     echo ""
-    print_status "The 'the-project' directory is tracked as a Git submodule but is not properly configured."
+    print_status "The 'the-project' directory is not properly configured or is missing files."
     print_status "This is a known issue. Here are your options:"
     echo ""
     
@@ -322,11 +301,10 @@ show_alternative_setup_options() {
     echo -e "   ${BLUE}4. Run: cd the-project/packages/frontend && npm run dev${NC}"
     echo ""
     
-    print_status "OPTION 2: Manual File Setup (Advanced)"
-    echo -e "   ${BLUE}1. Create the directory structure:${NC}"
-    echo -e "   ${BLUE}   mkdir -p the-project/packages/frontend${NC}"
-    echo -e "   ${BLUE}2. Contact the repository maintainers for the frontend source code${NC}"
-    echo -e "   ${BLUE}3. Or check if there's a separate repository for 'the-project'${NC}"
+    print_status "OPTION 2: Re-clone the Repository"
+    echo -e "   ${BLUE}1. Delete the current directory and re-clone:${NC}"
+    echo -e "   ${BLUE}   rm -rf project1 && git clone https://github.com/21104988d/project1${NC}"
+    echo -e "   ${BLUE}2. Run this setup script again${NC}"
     echo ""
     
     print_status "OPTION 3: Quick Demo Access"
@@ -366,9 +344,8 @@ main() {
         echo -e "   ${BLUE}cd the-project${NC}"
         echo -e "   ${BLUE}ls -la${NC}"
         echo ""
-        print_status "4. Check if this is a git submodule:"
-        echo -e "   ${BLUE}git submodule status${NC}"
-        echo -e "   ${BLUE}git submodule update --init --recursive${NC}"
+        print_status "4. Try re-cloning the repository:"
+        echo -e "   ${BLUE}rm -rf project1 && git clone https://github.com/21104988d/project1${NC}"
         echo ""
         print_status "5. If the-project has packages/frontend, navigate there:"
         echo -e "   ${BLUE}cd packages/frontend${NC}"

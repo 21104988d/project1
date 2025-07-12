@@ -28,7 +28,7 @@ project1/                                # 主儲存庫根目錄
 ├── review-docs/                         # 📚 生成的文檔
 │   ├── REVIEW_GUIDE.md                  # 詳細審查指南
 │   └── TROUBLESHOOTING.md               # 常見問題和修復
-└── the-project/                         # 開發Monorepo
+└── the-project/                         # 開發Monorepo（已整合）
     ├── packages/frontend/               # React DApp
     │   ├── src/demo/                    # 演示組件和數據
     │   └── Dockerfile.review            # 審查容器
@@ -289,26 +289,25 @@ npm run preview
 
 ### 🔧 儲存庫結構問題
 
-如果一鍵設置失敗並提到 "the-project directory is empty"：
+如果一鍵設置失敗：
 
 ```bash
 # 1. 檢查當前位置
 pwd
 ls -la
 
-# 2. 嘗試初始化子模組
-git submodule update --init --recursive
-
-# 3. 如果仍然失敗，手動導航
+# 2. 直接導航到項目（不再需要子模組）
 cd the-project
 ls -la
 
-# 4. 如果 packages/frontend 存在
+# 3. 如果 packages/frontend 存在，直接啟動
 cd packages/frontend
 npm install
 npm run dev
 
-# 5. 如果 the-project 完全空白，請檢查主儲存庫文檔
+# 4. 如果 the-project 不存在，請重新克隆儲存庫
+git clone https://github.com/21104988d/project1
+cd project1
 ```
 
 ### 🚀 **推薦解決方案：GitHub Codespaces**

@@ -59,42 +59,30 @@ fi
 
 # Check if the-project directory has content
 if [ -z "$(ls -A the-project 2>/dev/null)" ]; then
-    echo -e "${YELLOW}⚠️  The 'the-project' directory is empty${NC}"
-    echo "   This is likely due to a Git submodule or repository structure issue"
-    echo "   Attempting to initialize Git submodules..."
-    
-    if git submodule update --init --recursive 2>/dev/null; then
-        echo -e "${GREEN}✅ Git submodule initialization successful${NC}"
-        if [ ! -f "the-project/package.json" ]; then
-            echo -e "${RED}❌ Submodule initialization didn't create the expected files${NC}"
-            echo "   Please check the repository documentation for manual setup instructions"
-            exit 1
-        fi
-    else
-        echo -e "${RED}❌ Git submodule initialization failed${NC}"
-        echo ""
-        echo "REPOSITORY STRUCTURE ISSUE DETECTED:"
-        echo "===================================="
-        echo "The 'the-project' directory is tracked as a Git submodule but not properly configured."
-        echo ""
-        echo "RECOMMENDED SOLUTIONS:"
-        echo ""
-        echo "1. Use GitHub Codespaces (Easiest):"
-        echo "   • Go to: https://github.com/21104988d/project1"
-        echo "   • Click 'Code' → 'Codespaces' → 'Create codespace'"
-        echo "   • Run: cd the-project/packages/frontend && npm run dev"
-        echo ""
-        echo "2. Try the complete setup script instead:"
-        echo "   curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/complete-setup.sh | bash"
-        echo ""
-        echo "3. Manual setup (Advanced):"
-        echo "   • Check repository documentation for manual setup instructions"
-        echo "   • Contact the project maintainers for assistance"
-        echo ""
-        echo "For department reviews, we recommend using GitHub Codespaces for the most"
-        echo "reliable experience."
-        exit 1
-    fi
+    echo -e "${RED}❌ The 'the-project' directory is empty${NC}"
+    echo ""
+    echo "REPOSITORY STRUCTURE ISSUE DETECTED:"
+    echo "===================================="
+    echo "The project directory is not properly cloned or missing files."
+    echo ""
+    echo "RECOMMENDED SOLUTIONS:"
+    echo ""
+    echo "1. Use GitHub Codespaces (Easiest):"
+    echo "   • Go to: https://github.com/21104988d/project1"
+    echo "   • Click 'Code' → 'Codespaces' → 'Create codespace'"
+    echo "   • Run: cd the-project/packages/frontend && npm run dev"
+    echo ""
+    echo "2. Re-clone the repository:"
+    echo "   git clone https://github.com/21104988d/project1"
+    echo "   cd project1"
+    echo "   ./scripts/setup-review.sh"
+    echo ""
+    echo "3. Try the complete setup script instead:"
+    echo "   curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/complete-setup.sh | bash"
+    echo ""
+    echo "For department reviews, we recommend using GitHub Codespaces for the most"
+    echo "reliable experience."
+    exit 1
 fi
 
 # Change to the project directory for setup
