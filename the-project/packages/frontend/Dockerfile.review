@@ -1,0 +1,51 @@
+# Review Dockerfile for Frontend
+# Optimized for department reviews with demo data
+
+FROM node:18-alpine as builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY packages/frontend/package*.json ./packages/frontend/
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy source code
+COPY packages/frontend ./packages/frontend
+COPY packages/shared ./packages/shared
+
+# Set demo environment variables
+ENV VITE_APP_MODE=demo
+ENV VITE_DEMO_MODE=true
+ENV VITE_APP_NAME="The Project - Cross-Chain DApp"
+ENV VITE_APP_VERSION=1.5.0
+ENV VITE_DEMO_FEATURES_ENABLED=true
+ENV VITE_SHOW_TOOLTIPS=true
+ENV VITE_GUIDED_TOUR=true
+
+# Build the application
+WORKDIR /app/packages/frontend
+RUN npm run build
+
+# Production stage
+FROM nginx:alpine
+
+# Copy built files
+COPY --from=builder /app/packages/frontend/dist /usr/share/nginx/html
+
+# Copy nginx configuration for SPA
+COPY nginx-review-frontend.conf /etc/nginx/conf.d/default.conf
+
+# Add review banner
+RUN echo '<div style="background: #1e40af; color: white; text-align: center; padding: 8px; font-size: 14px; font-weight: bold;">🎭 REVIEW MODE - Demo Environment Active</div>' > /usr/share/nginx/html/review-banner.html
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost/ || exit 1
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

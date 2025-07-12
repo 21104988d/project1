@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2025-07-07T12:00:00.000Z",
+  "testnets": [
+    {
+      "name": "goerli",
+      "chainId": 5,
+      "rpcUrl": "https://goerli.infura.io/v3/YOUR_INFURA_PROJECT_ID",
+      "blockExplorer": "https://goerli.etherscan.io",
+      "currency": "ETH",
+      "testnet": true
+    },
+    {
+      "name": "sepolia",
+      "chainId": 11155111,
+      "rpcUrl": "https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID",
+      "blockExplorer": "https://sepolia.etherscan.io",
+      "currency": "ETH",
+      "testnet": true
+    },
+    {
+      "name": "arbitrumGoerli",
+      "chainId": 421613,
+      "rpcUrl": "https://arbitrum-goerli.infura.io/v3/YOUR_INFURA_PROJECT_ID",
+      "blockExplorer": "https://goerli.arbiscan.io",
+      "currency": "ETH",
+      "testnet": true
+    },
+    {
+      "name": "arbitrumSepolia",
+      "chainId": 421614,
+      "rpcUrl": "https://sepolia-rollup.arbitrum.io/rpc",
+      "blockExplorer": "https://sepolia.arbiscan.io",
+      "currency": "ETH",
+      "testnet": true
+    }
+  ],
+  "deploymentOrder": ["goerli", "sepolia", "arbitrumGoerli", "arbitrumSepolia"],
+  "contractsToDeployy": ["EntrypointContract", "ResolverContract"],
+  "verificationSettings": {
+    "enabled": true,
+    "retryAttempts": 3,
+    "delayBetweenAttempts": 5000
+  }
+}

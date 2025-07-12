@@ -1,0 +1,14 @@
+{
+  "contracts_dir": "contracts",
+  "exclude_paths": ["test/", "node_modules/", "cache/", "artifacts/"],
+  "solc": "0.8.19",
+  "solc_remaps": ["@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/"],
+  "check_external": true,
+  "check_unused": true,
+  "check_missing": true,
+  "output_format": "json",
+  "output_path": "slither-report.json",
+  "generate_patches": true,
+  "generate_vulnerability_annotations": true,
+  "min_severity": "medium"
+}
