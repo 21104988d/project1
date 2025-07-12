@@ -57,6 +57,33 @@ if [ ! -d "the-project" ]; then
     exit 1
 fi
 
+# Check if the-project directory has content
+if [ -z "$(ls -A the-project 2>/dev/null)" ]; then
+    echo -e "${YELLOW}⚠️  The 'the-project' directory is empty${NC}"
+    echo "   This is likely due to a Git submodule or repository structure issue"
+    echo "   Attempting to initialize Git submodules..."
+    
+    if git submodule update --init --recursive 2>/dev/null; then
+        echo -e "${GREEN}✅ Git submodule initialization successful${NC}"
+        if [ ! -f "the-project/package.json" ]; then
+            echo -e "${RED}❌ Submodule initialization didn't create the expected files${NC}"
+            echo "   Please check the repository documentation for manual setup instructions"
+            exit 1
+        fi
+    else
+        echo -e "${RED}❌ Git submodule initialization failed${NC}"
+        echo ""
+        echo "MANUAL SETUP REQUIRED:"
+        echo "======================"
+        echo "1. The 'the-project' directory exists but is empty"
+        echo "2. This usually means the repository structure needs manual setup"
+        echo "3. Please refer to the troubleshooting section in REVIEW_README.md"
+        echo "4. Or try the complete-setup.sh script instead:"
+        echo "   curl -fsSL https://raw.githubusercontent.com/21104988d/project1/main/scripts/complete-setup.sh | bash"
+        exit 1
+    fi
+fi
+
 # Change to the project directory for setup
 cd the-project
 
@@ -65,9 +92,24 @@ echo -e "${GREEN}✅ Found project directory${NC}"
 # Installation
 echo -e "${YELLOW}📦 Installing dependencies...${NC}"
 echo "   This may take 2-3 minutes on first run..."
+echo "   Current directory: $(pwd)"
+echo "   Package.json exists: $([ -f package.json ] && echo "Yes" || echo "No")"
+
+if [ ! -f "package.json" ]; then
+    echo -e "${RED}❌ No package.json found in $(pwd)${NC}"
+    echo "   Directory contents:"
+    ls -la
+    exit 1
+fi
 
 npm install --silent || {
     echo -e "${RED}❌ Failed to install dependencies${NC}"
+    echo "   Debugging information:"
+    echo "   - Current directory: $(pwd)"
+    echo "   - Node.js version: $(node -v)"
+    echo "   - npm version: $(npm -v)"
+    echo "   - Package.json exists: $([ -f package.json ] && echo "Yes" || echo "No")"
+    echo "   Try running manually: cd $(pwd) && npm install"
     exit 1
 }
 
