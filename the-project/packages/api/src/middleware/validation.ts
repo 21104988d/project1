@@ -102,7 +102,7 @@ export const validateContentType = (req: Request, res: Response, next: NextFunct
 };
 
 // Create validation chain
-export const createValidationChain = (_validators: any[]) => {
+export const createValidationChain = (_validators: unknown[]) => {
   return (_req: Request, _res: Response, next: NextFunction): void => {
     // Simple validation chain implementation
     next();

@@ -1,0 +1,192 @@
+/**
+ * Global CSS Variables - PayMe-inspired Color System
+ * These variables can be used across the entire application
+ */
+
+:root {
+  /* Primary Brand Colors (PayMe-inspired) */
+  --color-brand-primary: #FF006E;
+  --color-brand-secondary: #FB3085;
+  --color-brand-accent: #8B5FBF;
+
+  /* Interactive States */
+  --color-brand-hover-primary: #E6005F;
+  --color-brand-hover-secondary: #E82D7A;
+  --color-brand-hover-accent: #7A54AB;
+  
+  --color-brand-active-primary: #CC005A;
+  --color-brand-active-secondary: #D42670;
+  --color-brand-active-accent: #6B4996;
+
+  /* Stablecoin Colors */
+  --color-stablecoin-usdt: #26A69A;
+  --color-stablecoin-usdc: #2775CA;
+  --color-stablecoin-dai: #F5AC37;
+
+  /* Semantic Colors */
+  --color-success: #00C896;
+  --color-warning: #FFB800;
+  --color-error: #FF4757;
+  --color-info: #5352ED;
+
+  /* Surface Colors */
+  --color-surface-background: #FAFAFA;
+  --color-surface-card: #FFFFFF;
+  --color-surface-overlay: rgba(0, 0, 0, 0.6);
+
+  /* Border Colors */
+  --color-border-default: #E5E7EB;
+  --color-border-focus: #FF006E;
+  --color-border-error: #FF4757;
+
+  /* Text Colors */
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-text-tertiary: #9CA3AF;
+  --color-text-inverse: #FFFFFF;
+  --color-text-brand: #FF006E;
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #FF006E 0%, #FB3085 50%, #8B5FBF 100%);
+  --gradient-card: linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(255, 0, 110, 0.9) 0%, rgba(139, 95, 191, 0.9) 100%);
+
+  /* Shadows */
+  --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+  --shadow-brand: 0 4px 14px 0 rgba(255, 0, 110, 0.2);
+  --shadow-brand-lg: 0 10px 40px 0 rgba(255, 0, 110, 0.2);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* Z-index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+}
+
+/* Dark mode color overrides (if needed in the future) */
+[data-theme="dark"] {
+  --color-surface-background: #0F172A;
+  --color-surface-card: #1E293B;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #CBD5E1;
+  --color-text-tertiary: #94A3B8;
+  --color-border-default: #334155;
+}
+
+/* Base utility classes using the PayMe color system */
+.bg-brand-primary { background-color: var(--color-brand-primary); }
+.bg-brand-secondary { background-color: var(--color-brand-secondary); }
+.bg-brand-accent { background-color: var(--color-brand-accent); }
+
+.text-brand-primary { color: var(--color-brand-primary); }
+.text-brand-secondary { color: var(--color-brand-secondary); }
+.text-brand-accent { color: var(--color-brand-accent); }
+
+.border-brand-primary { border-color: var(--color-brand-primary); }
+.border-brand-secondary { border-color: var(--color-brand-secondary); }
+.border-brand-accent { border-color: var(--color-brand-accent); }
+
+/* PayMe-style gradient backgrounds */
+.bg-gradient-brand {
+  background: var(--gradient-brand);
+}
+
+.bg-gradient-card {
+  background: var(--gradient-card);
+}
+
+/* PayMe-style button base styles */
+.btn-payme-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: var(--transition-base);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-payme-primary {
+  background: var(--gradient-brand);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-brand);
+}
+
+.btn-payme-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-brand-lg);
+}
+
+.btn-payme-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-brand);
+}
+
+/* PayMe-style card components */
+.card-payme {
+  background: var(--color-surface-card);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border-default);
+  transition: var(--transition-base);
+}
+
+.card-payme:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-brand);
+}
+
+/* PayMe-style input fields */
+.input-payme {
+  background: var(--color-surface-card);
+  border: 2px solid var(--color-border-default);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: var(--transition-base);
+  width: 100%;
+}
+
+.input-payme:focus {
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px rgba(255, 0, 110, 0.1);
+  outline: none;
+}
+
+.input-payme.error {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.1);
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-brand-primary: #CC005A;
+    --color-border-default: #000000;
+    --color-text-primary: #000000;
+  }
+}

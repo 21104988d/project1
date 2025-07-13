@@ -4,6 +4,19 @@ import { keyManager } from '../config/keys';
 import { env } from '../config/env';
 
 /**
+ * JWT Token Payload interface
+ */
+interface TokenPayload {
+  id: string;
+  userId: string;
+  address: string;
+  role: string;
+  permissions?: string[];
+  exp?: number;
+  iat?: number;
+}
+
+/**
  * Extended Request interface with user information
  */
 export interface AuthenticatedRequest extends Request {
@@ -79,9 +92,10 @@ export function generateToken(userId: string, role: UserRole): string {
  * @param token - JWT token to verify
  * @returns Decoded token payload
  */
-export function verifyToken(token: string): any {
+export function verifyToken(token: string): TokenPayload | null {
   try {
-    return jwt.verify(token, keyManager.getKey('jwt'));
+    const decoded = jwt.verify(token, keyManager.getKey('jwt')) as TokenPayload;
+    return decoded;
   } catch {
     throw new Error('Invalid token');
   }
@@ -102,6 +116,11 @@ export function authenticate(req: AuthenticatedRequest, res: Response, next: Nex
 
     const token = authHeader.substring(7); // Remove 'Bearer ' prefix
     const decoded = verifyToken(token);
+
+    if (!decoded) {
+      res.status(401).json({ error: 'Invalid token payload' });
+      return;
+    }
 
     req.user = {
       id: decoded.id,

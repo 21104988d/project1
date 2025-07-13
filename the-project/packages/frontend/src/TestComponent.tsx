@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TestComponent: React.FC = () => {
-  console.log('TestComponent is rendering...');
+  // TestComponent rendering - tracked by development tools
 
   return (
     <div

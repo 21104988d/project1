@@ -129,5 +129,9 @@
   "bugs": {
     "url": "https://github.com/theproject/the-project/issues"
   },
-  "homepage": "https://theproject.xyz"
+  "homepage": "https://theproject.xyz",
+  "dependencies": {
+    "postcss-selector-parser": "^7.1.0",
+    "yaml": "^2.8.0"
+  }
 }

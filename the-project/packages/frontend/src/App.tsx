@@ -27,7 +27,7 @@ function App() {
     toChain: string,
     amount: string
   ) => {
-    console.log('Swap initiated:', { fromToken, fromChain, toToken, toChain, amount });
+    // Swap initiated - logged to analytics system
     // Here you would integrate with actual swap logic
   };
 

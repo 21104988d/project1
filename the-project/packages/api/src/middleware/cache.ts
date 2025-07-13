@@ -16,7 +16,7 @@ async function initializeRedis() {
       url: process.env.REDIS_URL || 'redis://localhost:6379',
     });
 
-    redisClient.on('error', (err: any) => {
+    redisClient.on('error', (err: Error) => {
       console.error('Redis Cache Error:', err);
     });
 
@@ -65,7 +65,7 @@ export function cacheMiddleware(ttlSeconds: number, options: Partial<CacheOption
 
       // Override res.json to cache the response
       const originalJson = res.json.bind(res);
-      res.json = function (data: any) {
+      res.json = function (data: unknown) {
         // Cache successful responses only
         if (res.statusCode === 200) {
           redisClient
@@ -120,7 +120,15 @@ export async function invalidateCache(pattern: string): Promise<void> {
 }
 
 // Cache statistics
-export async function getCacheStats(): Promise<any> {
+export async function getCacheStats(): Promise<{
+  connected: boolean;
+  memoryUsage?: string;
+  keyCount?: number;
+  hitRate?: number;
+  memoryInfo?: string;
+  timestamp?: string;
+  error?: string;
+}> {
   if (!redisClient) return { connected: false };
 
   try {

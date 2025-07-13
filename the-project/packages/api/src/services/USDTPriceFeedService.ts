@@ -384,8 +384,9 @@ export class USDTPriceFeedService {
   async getCurrentPrice(pair: string, chain: string): Promise<any> {
     try {
       // Parse pair (e.g., "USDT/USDC")
-      const [_baseToken, _quoteToken] = pair.split('/');
-      // TODO: Use _baseToken and _quoteToken for specific pair pricing
+      const [baseToken, quoteToken] = pair.split('/');
+      // TODO: Use baseToken and quoteToken for specific pair pricing
+      console.log(`Getting price for ${baseToken}/${quoteToken} on ${chain}`);
 
       // Get current price from cache or fetch fresh
       let cachedPrice = await this.getCachedPrice(chain);

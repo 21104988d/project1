@@ -87,7 +87,13 @@ export class USDTTransaction {
   status: TransactionStatus;
 
   @Column({ name: 'route_data', type: 'jsonb', nullable: true })
-  routeData?: any;
+  routeData?: {
+    path: string[];
+    fees: number[];
+    estimatedGas: string;
+    priceImpact: number;
+    [key: string]: unknown;
+  };
 
   @Column({ name: 'bridge_provider', type: 'varchar', length: 100, nullable: true })
   bridgeProvider?: string;

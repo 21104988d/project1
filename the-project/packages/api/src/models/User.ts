@@ -96,7 +96,13 @@ export class User {
   feeTier!: number;
 
   @Column({ name: 'notification_preferences', type: 'jsonb', nullable: true })
-  notificationPreferences?: any;
+  notificationPreferences?: {
+    email: boolean;
+    push: boolean;
+    sms: boolean;
+    telegram: boolean;
+    [key: string]: unknown;
+  };
 
   @Column({ name: 'api_key_hash', type: 'varchar', length: 64, nullable: true })
   apiKeyHash?: string;

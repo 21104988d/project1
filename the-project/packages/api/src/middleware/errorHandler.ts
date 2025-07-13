@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-export const errorHandler = (error: any, req: Request, res: Response, _next: NextFunction) => {
+export const errorHandler = (error: Error, req: Request, res: Response, _next: NextFunction) => {
   console.error('API Error:', {
     message: error.message,
     stack: error.stack,
@@ -55,8 +55,8 @@ export const errorHandler = (error: any, req: Request, res: Response, _next: Nex
   }
 
   // Don't expose stack traces in production
-  if (process.env.NODE_ENV === 'development') {
-    (errorResponse as any).stack = error.stack;
+  if (process.env.NODE_ENV === 'development' && error.stack) {
+    (errorResponse as { stack?: string }).stack = error.stack;
   }
 
   res.status(statusCode).json(errorResponse);

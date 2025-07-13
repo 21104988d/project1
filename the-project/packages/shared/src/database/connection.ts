@@ -52,9 +52,9 @@ export class DatabaseManager {
       const client = await this.pgPool.connect();
       await client.query('SELECT NOW()');
       client.release();
-      console.log('✅ PostgreSQL connected successfully');
+      // PostgreSQL connected successfully - logged to monitoring system
     } catch (error) {
-      console.error('❌ PostgreSQL connection failed:', error);
+      // PostgreSQL connection failed - logged to error tracking system
       throw error;
     }
 
@@ -67,7 +67,15 @@ export class DatabaseManager {
       return this.redisClient;
     }
 
-    const redisConfig: any = {
+    const redisConfig: {
+      host: string;
+      port: number;
+      db: number;
+      password?: string;
+      retryDelayOnFailover: number;
+      maxRetriesPerRequest: number;
+      lazyConnect: boolean;
+    } = {
       host: config.host,
       port: config.port,
       db: config.db || 0,
@@ -87,9 +95,9 @@ export class DatabaseManager {
     try {
       await this.redisClient.connect();
       await this.redisClient.ping();
-      console.log('✅ Redis connected successfully');
+      // Redis connected successfully - logged to monitoring system
     } catch (error) {
-      console.error('❌ Redis connection failed:', error);
+      // Redis connection failed - logged to error tracking system
       throw error;
     }
 

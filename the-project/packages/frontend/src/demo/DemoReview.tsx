@@ -20,7 +20,6 @@ const DemoReview: React.FC<DemoReviewProps> = ({ onClose }) => {
   const [showTooltips, setShowTooltips] = useState(true);
 
   const demoWallet = getDemoWallet();
-  const demoTokens = getDemoTokens();
   const demoTransactions = getDemoTransactions();
 
   useEffect(() => {

@@ -107,6 +107,6 @@ export class USDTRate {
     totalSupply?: string; // For LP tokens
     apr?: number; // Annual percentage rate
     rewards?: string[]; // Reward token addresses
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
