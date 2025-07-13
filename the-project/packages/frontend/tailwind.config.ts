@@ -61,13 +61,14 @@ const config: Config = {
       backgroundImage: {
         'gradient-brand': 'linear-gradient(135deg, #FF006E 0%, #FB3085 50%, #8B5FBF 100%)',
         'gradient-card': 'linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%)',
-        'gradient-overlay': 'linear-gradient(180deg, rgba(255, 0, 110, 0.9) 0%, rgba(139, 95, 191, 0.9) 100%)',
+        'gradient-overlay':
+          'linear-gradient(180deg, rgba(255, 0, 110, 0.9) 0%, rgba(139, 95, 191, 0.9) 100%)',
       },
       boxShadow: {
-        'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.05)',
-        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-        'modal': '0 20px 25px -5px rgba(0, 0, 0, 0.25)',
-        'brand': '0 4px 14px 0 rgba(255, 0, 110, 0.2)',
+        subtle: '0 1px 3px 0 rgba(0, 0, 0, 0.05)',
+        card: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+        modal: '0 20px 25px -5px rgba(0, 0, 0, 0.25)',
+        brand: '0 4px 14px 0 rgba(255, 0, 110, 0.2)',
         'brand-lg': '0 10px 40px 0 rgba(255, 0, 110, 0.2)',
       },
       animation: {
@@ -93,6 +94,55 @@ const config: Config = {
             'background-position': '100% 50%',
           },
         },
+      },
+      // Typography system
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      fontSize: {
+        // Micro text (12px)
+        micro: ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.025em' }],
+        // Small text (14px)
+        small: ['0.875rem', { lineHeight: '1.25rem', letterSpacing: '0.025em' }],
+        // Body text (16px)
+        body: ['1rem', { lineHeight: '1.5rem', letterSpacing: '0.0125em' }],
+        // Large body text (18px)
+        'body-lg': ['1.125rem', { lineHeight: '1.75rem', letterSpacing: '0.0125em' }],
+        // H3 heading (24px)
+        h3: ['1.5rem', { lineHeight: '2rem', letterSpacing: '-0.025em' }],
+        // H2 heading (30px)
+        h2: ['1.875rem', { lineHeight: '2.25rem', letterSpacing: '-0.025em' }],
+        // H1 heading (36px)
+        h1: ['2.25rem', { lineHeight: '2.5rem', letterSpacing: '-0.025em' }],
+        // Hero text (56px)
+        hero: ['3.5rem', { lineHeight: '1', letterSpacing: '-0.025em' }],
+        // Display text (72px)
+        display: ['4.5rem', { lineHeight: '1', letterSpacing: '-0.025em' }],
+      },
+      fontWeight: {
+        light: '300',
+        regular: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        black: '900',
+      },
+      letterSpacing: {
+        tighter: '-0.05em',
+        tight: '-0.025em',
+        normal: '0',
+        wide: '0.025em',
+        wider: '0.05em',
+        widest: '0.1em',
+      },
+      lineHeight: {
+        none: '1',
+        tight: '1.1',
+        snug: '1.2',
+        normal: '1.5',
+        relaxed: '1.75',
+        loose: '2',
       },
     },
   },
