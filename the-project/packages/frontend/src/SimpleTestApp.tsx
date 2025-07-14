@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TestApp() {
+export default function SimpleTestApp() {
   return (
     <div
       style={{
