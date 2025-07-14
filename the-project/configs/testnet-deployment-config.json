@@ -21,26 +21,6 @@
       "testnet": true,
       "status": "active",
       "description": "Arbitrum L2 testnet"
-    },
-    {
-      "name": "goerli",
-      "chainId": 5,
-      "rpcUrl": "https://goerli.infura.io/v3/YOUR_INFURA_PROJECT_ID",
-      "blockExplorer": "https://goerli.etherscan.io",
-      "currency": "ETH",
-      "testnet": true,
-      "status": "deprecated",
-      "description": "DEPRECATED - Scheduled for shutdown"
-    },
-    {
-      "name": "arbitrumGoerli",
-      "chainId": 421613,
-      "rpcUrl": "https://arbitrum-goerli.infura.io/v3/YOUR_INFURA_PROJECT_ID",
-      "blockExplorer": "https://goerli.arbiscan.io",
-      "currency": "ETH",
-      "testnet": true,
-      "status": "deprecated",
-      "description": "DEPRECATED - Use arbitrumSepolia instead"
     }
   ],
   "deploymentOrder": ["sepolia", "arbitrumSepolia"],

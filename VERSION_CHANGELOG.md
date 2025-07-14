@@ -1,4 +1,7 @@
-# **Document Version:** v1.1.4
+# **Document Version:** v1.1.5
+
+**Created:** July 4, 2025  
+**Last Updated:** July 12, 2025Document Version:\*\* v1.1.5
 
 **Created:** July 4, 2025  
 **Last Updated:** July 12, 2025  
@@ -17,6 +20,44 @@ We follow semantic versioning for documentation:
 ---
 
 ## Changelog
+
+### July 12, 2025 - Deployment Modernization and Testnet Cleanup v1.1.5
+
+**Type:** Minor Update - Infrastructure Modernization
+
+**Files Updated:**
+
+- `the-project/configs/testnet-deployment-config.json`: Removed deprecated Goerli and Arbitrum Goerli testnets
+- `the-project/.env.example`: Updated testnet configuration to use Sepolia and Arbitrum Sepolia
+- `the-project/scripts/deploy-one-button.sh`: New comprehensive deployment script for full-stack automation
+- `the-project/scripts/setup-review.sh`: Updated to integrate new one-button deployment
+- `the-project/scripts/complete-setup.sh`: Updated to use modern deployment flow
+- `the-project/package.json`: Added new deployment and review scripts
+- `the-project/DEPLOYMENT_GUIDE.md`: New comprehensive deployment documentation
+- `the-project/README.zh-TW.md`: Removed references to deprecated testnets
+
+**Changes Made:**
+
+1. **Testnet Modernization**: Replaced deprecated Goerli and Arbitrum Goerli with active Sepolia and Arbitrum Sepolia testnets
+2. **One-Button Deployment**: Created comprehensive script for full-stack deployment including contracts, API, and frontend
+3. **Review Integration**: Updated all department review and setup scripts to use modern deployment flow
+4. **Documentation Update**: Created comprehensive deployment guide and updated existing documentation
+5. **Configuration Cleanup**: Removed all references to deprecated test networks across the codebase
+
+**Impact:**
+
+- Eliminates reliance on deprecated Ethereum testnets that are no longer maintained
+- Provides single-command deployment for entire application stack
+- Streamlines department review setup with integrated deployment
+- Improves developer experience with comprehensive deployment documentation
+- Ensures all deployment and review flows use current infrastructure
+
+**Rationale:**
+
+- Ethereum Foundation deprecated Goerli and Arbitrum Goerli testnets in favor of Sepolia
+- Modern deployment practices require comprehensive automation for complex multi-service applications
+- Department reviewers benefit from simplified, integrated setup processes
+- Centralized deployment documentation reduces setup friction and errors
 
 ### July 12, 2025 - Design Excellence Checklist Streamlining v1.1.4
 
@@ -508,14 +549,12 @@ We follow semantic versioning for documentation:
 #### Quality Assurance Infrastructure Complete:
 
 1. **Code Quality Tools (4.1)** ✅
-
    - ESLint with TypeScript rules configured and working
    - Prettier code formatting with Solidity support
    - Husky pre-commit hooks preventing bad commits
    - Automated code review tools integrated
 
 2. **Testing Infrastructure (4.2)** ✅
-
    - Unit testing for all packages (Shared: 23 tests passing, Contracts: 4 tests passing)
    - Integration testing environment with database and Redis setup
    - End-to-end testing with Playwright v1.53.2
@@ -548,14 +587,12 @@ We follow semantic versioning for documentation:
 #### Phase Structure Enhancement:
 
 1. **Added Phase 1.5: "Design Excellence"**
-
    - New dedicated phase for UI/UX development between core functionality and decentralized scaling
    - Focus on transforming functional infrastructure into consumer-grade product
    - Timeline: 1 month between Phase 1 and Phase 2
    - Updated implementation timeline across all documentation
 
 2. **Documentation Consistency Updates**
-
    - Updated version numbers across all affected files
    - Enhanced phase references and timeline adjustments
    - Ensured cross-document consistency for phase numbering
@@ -587,7 +624,6 @@ We follow semantic versioning for documentation:
 #### Strategic Positioning Updates:
 
 1. **Customer-to-Customer (C2C) Focus Strategy**
-
    - Emphasized direct peer-to-peer value transfer approach
    - Highlighted unique value propositions:
      - C2C focus enabling direct user-to-user transactions
@@ -597,7 +633,6 @@ We follow semantic versioning for documentation:
      - Decentralized routing vision (V2 Pathfinder Network)
 
 2. **User Experience Philosophy Enhancement**
-
    - Defined "Easiest UI" core principles:
      - Zero Cognitive Load principle
      - "It Just Works" reliability standard
@@ -615,14 +650,12 @@ We follow semantic versioning for documentation:
 #### Technical Documentation Updates:
 
 1. **Frontend Architecture**
-
    - "One Card, One Button" UI specification
    - Trust-building progress tracker requirements
    - Human-readable error handling standards
    - Instantaneous quote requirements (<200ms)
 
 2. **Smart Contract Standards**
-
    - Gas optimization priorities
    - Custom error implementation guidelines
    - User-centric design principles at contract level
@@ -635,7 +668,6 @@ We follow semantic versioning for documentation:
 #### Development Approach Updates:
 
 1. **Simplified Deployment Strategy**
-
    - Web-first approach with mobile optimization
    - PWA implementation pathway
    - App Store bypass strategy
@@ -696,13 +728,11 @@ We follow semantic versioning for documentation:
 ## Update Process
 
 1. **Before Making Changes:**
-
    - Review current version in document header
    - Determine if change is major, minor, or patch
    - Document planned changes in this changelog
 
 2. **Making Changes:**
-
    - Update document version number in header
    - Implement changes with clear commit messages
    - Update this changelog with details

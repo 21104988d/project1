@@ -3,6 +3,7 @@
 ## Quick Start Options
 
 ### 1. 🎯 **One-Button Deployment** (Recommended)
+
 Complete full-stack deployment with one command:
 
 ```bash
@@ -11,6 +12,7 @@ cd the-project
 ```
 
 **What it includes:**
+
 - ✅ Docker infrastructure (PostgreSQL, Redis)
 - ✅ Smart contract compilation & deployment to testnets
 - ✅ Frontend and API servers
@@ -18,6 +20,7 @@ cd the-project
 - ✅ Environment validation
 
 ### 2. 📋 **Department Review Setup**
+
 For non-technical department reviews:
 
 ```bash
@@ -25,12 +28,14 @@ For non-technical department reviews:
 ```
 
 **Features:**
+
 - ✅ Simplified setup process
 - ✅ Demo mode (no real crypto needed)
 - ✅ Mobile-friendly interface
 - ✅ Guided review checklist
 
 ### 3. 🛠️ **Developer Setup**
+
 For full development environment:
 
 ```bash
@@ -40,6 +45,7 @@ For full development environment:
 ## Available Commands
 
 ### Deployment
+
 ```bash
 npm run review:deploy          # One-button deployment
 npm run deploy:testnet:all     # Deploy to all testnets
@@ -48,6 +54,7 @@ npm run deploy:testnet:arbitrum # Deploy to Arbitrum Sepolia only
 ```
 
 ### Development
+
 ```bash
 npm run dev                    # Start both API and frontend
 npm run frontend:dev          # Frontend only
@@ -55,6 +62,7 @@ npm run api:dev              # API only
 ```
 
 ### Infrastructure
+
 ```bash
 npm run docker:up             # Start Docker services
 npm run docker:down           # Stop Docker services
@@ -64,6 +72,7 @@ npm run docker:logs           # View service logs
 ## Environment Setup
 
 1. **Copy environment template:**
+
    ```bash
    cp .env.example .env
    ```
@@ -80,10 +89,12 @@ npm run docker:logs           # View service logs
 ## Network Configuration (Updated 2025)
 
 ### ✅ Active Testnets
+
 - **Sepolia** (Primary Ethereum testnet)
 - **Arbitrum Sepolia** (L2 testnet)
 
 ### ❌ Deprecated Networks
+
 - ~~Goerli~~ (Scheduled for shutdown)
 - ~~Arbitrum Goerli~~ (Use Arbitrum Sepolia instead)
 
@@ -92,11 +103,13 @@ npm run docker:logs           # View service logs
 ### Common Issues
 
 1. **Port 5173 already in use:**
+
    ```bash
    lsof -ti:5173 | xargs kill -9
    ```
 
 2. **Docker services not starting:**
+
    ```bash
    docker-compose down
    docker-compose up -d
@@ -108,6 +121,7 @@ npm run docker:logs           # View service logs
    - Run deployment with `--verbose` flag for details
 
 ### Service URLs
+
 - **Frontend:** http://localhost:5173
 - **API:** http://localhost:3001
 - **Database:** localhost:5432
@@ -116,24 +130,28 @@ npm run docker:logs           # View service logs
 ## Review Checklist
 
 ### Visual Design ✅
+
 - [ ] Professional appearance suitable for financial application
 - [ ] Consistent branding throughout the interface
 - [ ] Clear visual hierarchy and readable typography
 - [ ] Appropriate use of colors and spacing
 
 ### User Experience ✅
+
 - [ ] Intuitive navigation without training needed
 - [ ] Clear call-to-action buttons and workflows
 - [ ] Helpful error messages and guidance
 - [ ] Fast and responsive interactions
 
 ### Mobile Experience ✅
+
 - [ ] Works well on mobile devices (phone/tablet)
 - [ ] Touch-friendly interface elements
 - [ ] Readable text on small screens
 - [ ] Fast loading on mobile connections
 
 ### Security & Trust ✅
+
 - [ ] Professional appearance that builds confidence
 - [ ] Clear transaction flows and confirmations
 - [ ] Transparent fee structure and costs
@@ -142,6 +160,7 @@ npm run docker:logs           # View service logs
 ## Support
 
 For issues or questions:
+
 1. Check `review-docs/TROUBLESHOOTING.md`
 2. Review deployment logs: `npm run docker:logs`
 3. Restart services: `./deploy-one-button.sh`
