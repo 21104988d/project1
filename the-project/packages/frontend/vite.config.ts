@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0', // Allow external connections (required for Codespaces)
     port: 5173,
-    strictPort: true, // Fail if port is already in use
+    strictPort: false, // Allow fallback to other ports if 5173 is busy
     hmr: {
       port: 5173, // Use same port for HMR
     },
@@ -15,5 +15,6 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 5173,
+    strictPort: false, // Allow fallback for preview as well
   },
 });
