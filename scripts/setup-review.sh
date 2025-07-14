@@ -359,6 +359,30 @@ fi
 # Go back to main repository for final messages
 cd ..
 
+# Check if user wants to run one-button deployment
+echo ""
+echo -e "${YELLOW}🚀 One-Button Deployment Available${NC}"
+echo "We have a new one-button deployment script that sets up everything automatically:"
+echo "• Docker infrastructure (PostgreSQL, Redis)"
+echo "• Smart contract compilation and deployment"
+echo "• Frontend and API servers"
+echo ""
+read -p "Would you like to run the one-button deployment now? (y/N): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo -e "${GREEN}Starting one-button deployment...${NC}"
+    cd the-project
+    if [ -f "deploy-one-button.sh" ]; then
+        ./deploy-one-button.sh
+    else
+        echo -e "${RED}❌ One-button deployment script not found${NC}"
+        echo "Please ensure deploy-one-button.sh exists in the-project directory"
+    fi
+    cd ..
+else
+    echo -e "${YELLOW}Skipping one-button deployment. You can run it manually later.${NC}"
+fi
+
 # Final success message
 echo -e "${GREEN}"
 echo "================================================================="
@@ -367,11 +391,12 @@ echo "================================================================="
 echo -e "${NC}"
 
 echo -e "${BLUE}📋 Next Steps:${NC}"
-echo "1. Navigate to the project directory:"
+echo "1. For complete one-button deployment (recommended):"
 echo -e "   ${YELLOW}cd the-project${NC}"
+echo -e "   ${YELLOW}./deploy-one-button.sh${NC}"
 echo ""
-echo "2. Start the review application:"
-echo -e "   ${YELLOW}cd packages/frontend${NC}"
+echo "2. OR for frontend-only review:"
+echo -e "   ${YELLOW}cd the-project/packages/frontend${NC}"
 echo -e "   ${YELLOW}npm run dev${NC}"
 echo ""
 echo "3. Open your browser to:"
@@ -381,6 +406,7 @@ echo "4. Read the review guide:"
 echo -e "   ${YELLOW}cat ../review-docs/REVIEW_GUIDE.md${NC}"
 echo ""
 echo -e "${BLUE}💡 Pro Tips:${NC}"
+echo "• One-button script includes full infrastructure setup"
 echo "• Use demo mode - no real crypto needed"
 echo "• Test on mobile by resizing browser"
 echo "• Check review-docs/ for detailed guides"

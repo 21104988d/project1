@@ -368,20 +368,28 @@ main() {
     echo "=================================================="
     echo ""
     print_status "You are now in the frontend directory: $(pwd)"
-    print_status "To start the application, run:"
-    echo -e "${BLUE}npm run dev${NC}"
+    print_status "Available deployment options:"
     echo ""
-    print_status "Or use the direct command:"
-    echo -e "${BLUE}npx vite --host 0.0.0.0 --port 5173${NC}"
+    print_status "1. One-Button Deployment (Recommended):"
+    echo -e "   ${BLUE}cd .. && ./deploy-one-button.sh${NC}"
+    echo "   → Sets up full infrastructure + contracts + frontend"
+    echo ""
+    print_status "2. Frontend Only:"
+    echo -e "   ${BLUE}npm run dev${NC}"
+    echo "   → Quick frontend development server"
+    echo ""
+    print_status "3. Manual Development:"
+    echo -e "   ${BLUE}npx vite --host 0.0.0.0 --port 5173${NC}"
+    echo "   → Direct Vite server"
     echo ""
     print_status "The application will be available at: http://localhost:5173"
     echo ""
     
     # Ask if user wants to start immediately
-    read -p "Do you want to start the application now? (Y/n): " -n 1 -r
+    read -p "Do you want to start the frontend now? (Y/n): " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Nn]$ ]]; then
-        print_status "Starting the application..."
+        print_status "Starting the frontend application..."
         npm run dev
     fi
 }
