@@ -9,6 +9,7 @@ export default defineConfig({
     port: 5173,
     strictPort: false, // Allow fallback to other ports if 5173 is busy
     hmr: {
+      clientPort: 443, // Use port 443 for HMR in Codespaces
       port: 5173, // Use same port for HMR
     },
   },
