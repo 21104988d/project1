@@ -16,7 +16,6 @@
     "@solana/web3.js": "^1.98.2",
     "@tanstack/react-query": "^5.81.5",
     "@theproject/shared": "1.0.0",
-    "@walletconnect/web3-provider": "^1.8.0",
     "@web3modal/wagmi": "^5.1.11",
     "ethers": "^6.14.4",
     "react": "^18.3.1",
