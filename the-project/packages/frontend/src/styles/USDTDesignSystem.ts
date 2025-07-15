@@ -1,7 +1,7 @@
-export const createUSDTButton = () => {
-  return '<button>USDT Button</button>';
+export const createUSDTButton = (variant: 'primary' | 'secondary' = 'primary') => {
+  return variant === 'primary' ? 'primary-button' : 'secondary-button';
 };
 
 export const createUSDTCard = () => {
-  return '<div>USDT Card</div>';
+  return 'swap-card';
 };

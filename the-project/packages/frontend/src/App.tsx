@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { SwapInterface } from './components/SwapInterface/SwapInterface';
-import { USDTNavigation } from './components/Navigation/USDTNavigation';
+import { SwapInterface } from './components/SwapInterface/ModernSwapInterface';
 import { UXShowcase } from './components/UX/UXShowcase';
 import {
   ZeroCognitiveLoadContainer,
@@ -12,6 +11,7 @@ import {
   useBreakpoint,
 } from './components/UX';
 import './App.css';
+import './styles/USDTDesignSystem.css';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('swap');
@@ -20,11 +20,6 @@ function App() {
   // Preload critical data for performance
   usePreloadCriticalData();
 
-  const handleSwap = () => {
-    // Swap initiated - logged to analytics system
-    // Here you would integrate with actual swap logic
-  };
-
   const handleNavigate = (pageId: string) => {
     setCurrentPage(pageId);
   };
@@ -32,7 +27,17 @@ function App() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'swap':
-        return <SwapInterface onSwap={handleSwap} />;
+        return (
+          <div className='swap-container'>
+            <div className='swap-card'>
+              <div className='swap-header'>
+                <h2 className='swap-title'>Swap</h2>
+                <button className='settings-button'>⚙️</button>
+              </div>
+              <SwapInterface />
+            </div>
+          </div>
+        );
       case 'portfolio':
         return (
           <ZeroCognitiveLoadContainer
@@ -60,13 +65,23 @@ function App() {
       case 'ux-demo':
         return <UXShowcase />;
       default:
-        return <SwapInterface onSwap={handleSwap} />;
+        return (
+          <div className='swap-container'>
+            <div className='swap-card'>
+              <div className='swap-header'>
+                <h2 className='swap-title'>Swap</h2>
+                <button className='settings-button'>⚙️</button>
+              </div>
+              <SwapInterface />
+            </div>
+          </div>
+        );
     }
   };
 
   return (
     <IJWErrorBoundary>
-      <div className='min-h-screen bg-gray-50 dark:bg-gray-900'>
+      <div className='app-container'>
         {/* Connection monitoring and performance indicators */}
         <ConnectionMonitor />
         <PerformanceMonitor />
@@ -74,8 +89,53 @@ function App() {
         {/* PWA install prompt for mobile users */}
         {breakpoint === 'mobile' && <PWAInstallPrompt />}
 
-        <USDTNavigation currentPage={currentPage} onNavigate={handleNavigate} />
-        <main className='container mx-auto px-4 py-8'>{renderCurrentPage()}</main>
+        <header className='app-header'>
+          <div className='nav-container'>
+            <div className='nav-logo'>USDT Bridge</div>
+            <nav>
+              <ul className='nav-links'>
+                <li>
+                  <a
+                    href='#'
+                    className={`nav-link ${currentPage === 'swap' ? 'active' : ''}`}
+                    onClick={() => handleNavigate('swap')}
+                  >
+                    Swap
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='#'
+                    className={`nav-link ${currentPage === 'portfolio' ? 'active' : ''}`}
+                    onClick={() => handleNavigate('portfolio')}
+                  >
+                    Portfolio
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='#'
+                    className={`nav-link ${currentPage === 'history' ? 'active' : ''}`}
+                    onClick={() => handleNavigate('history')}
+                  >
+                    History
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='#'
+                    className={`nav-link ${currentPage === 'analytics' ? 'active' : ''}`}
+                    onClick={() => handleNavigate('analytics')}
+                  >
+                    Analytics
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+
+        <main className='app-main'>{renderCurrentPage()}</main>
       </div>
     </IJWErrorBoundary>
   );
