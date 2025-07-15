@@ -207,50 +207,29 @@ clone_repository() {
 setup_application() {
     print_step "4/4 Setting up the application..."
     
-    # Navigate to frontend directory
-    print_status "Navigating to frontend directory..."
+    # Navigate to the-project directory (main monorepo root)
+    print_status "Navigating to project directory..."
     print_status "Current working directory: $(pwd)"
     
     # Check if we're already in the cloned repository
-    if [ -d "the-project/packages/frontend" ]; then
-        print_status "Found the-project/packages/frontend in current directory"
-        cd the-project/packages/frontend
-    elif [ -d "../the-project/packages/frontend" ]; then
-        print_status "Found the-project/packages/frontend in parent directory" 
-        cd ../the-project/packages/frontend
+    if [ -d "the-project" ]; then
+        print_status "Found the-project directory in current directory"
+        cd the-project
+    elif [ -d "../the-project" ]; then
+        print_status "Found the-project directory in parent directory" 
+        cd ../the-project
     else
-        print_warning "Could not find the-project/packages/frontend directory"
-        
-        # Check if the-project directory exists
-        if [ -d "the-project" ]; then
-            if [ ! -d "the-project/packages" ]; then
-                print_error "the-project directory exists but is missing the packages subdirectory"
-                print_status "This may indicate an incomplete clone or corrupted repository"
-                print_status "Contents of the-project:"
-                ls -la the-project/ | head -10
-                show_alternative_setup_options
-                return 1
-            else
-                print_status "the-project directory exists but doesn't contain packages/frontend"
-                print_status "Contents of the-project/packages:"
-                ls -la the-project/packages/
-                show_manual_setup_instructions
-                return 1
-            fi
-        else
-            print_error "the-project directory not found at all"
-            print_status "This indicates the repository was not cloned properly"
-            print_status "Available directories:"
-            ls -la
-            show_alternative_setup_options
-            return 1
-        fi
+        print_warning "Could not find the-project directory"
+        print_status "Available directories:"
+        ls -la
+        show_alternative_setup_options
+        return 1
     fi
     
     print_status "Successfully navigated to: $(pwd)"
     
-    # Install dependencies
-    print_status "Installing npm dependencies..."
+    # Install dependencies for the entire monorepo
+    print_status "Installing npm dependencies for monorepo..."
     if npm install; then
         print_status "Dependencies installed successfully!"
     else
@@ -277,16 +256,16 @@ show_manual_setup_instructions() {
     print_status "2. Check current directory contents:"
     echo -e "   ${BLUE}ls -la${NC}"
     echo ""
-    print_status "3. If you see 'the-project' directory, check its contents:"
-    echo -e "   ${BLUE}ls -la the-project/${NC}"
+    print_status "3. If you see 'the-project' directory, navigate to it:"
+    echo -e "   ${BLUE}cd the-project${NC}"
     echo ""
-    print_status "4. Try re-cloning the repository:"
-    echo -e "   ${BLUE}rm -rf project1 && git clone https://github.com/21104988d/project1${NC}"
-    echo ""
-    print_status "5. Once the-project/packages/frontend exists:"
-    echo -e "   ${BLUE}cd the-project/packages/frontend${NC}"
+    print_status "4. Install dependencies and start the application:"
     echo -e "   ${BLUE}npm install${NC}"
-    echo -e "   ${BLUE}npm run dev${NC}"
+    echo -e "   ${BLUE}npm run dev${NC}  # For full development environment"
+    echo ""
+    print_status "5. Alternative: Frontend only (if you just want to review the UI):"
+    echo -e "   ${BLUE}cd packages/frontend${NC}"
+    echo -e "   ${BLUE}npx vite --host 0.0.0.0 --port 5173${NC}"
     echo ""
     print_status "For support, please check the repository documentation or contact the project maintainers."
 }
@@ -305,7 +284,7 @@ show_alternative_setup_options() {
     echo -e "   ${BLUE}1. Go to: https://github.com/21104988d/project1${NC}"
     echo -e "   ${BLUE}2. Click 'Code' → 'Codespaces' → 'Create codespace'${NC}"
     echo -e "   ${BLUE}3. Wait for the environment to load${NC}"
-    echo -e "   ${BLUE}4. Run: cd the-project/packages/frontend && npm run dev${NC}"
+    echo -e "   ${BLUE}4. Run: cd the-project && npm install && npm run dev${NC}"
     echo ""
     
     print_status "OPTION 2: Re-clone the Repository"
@@ -367,29 +346,31 @@ main() {
     echo "🎉 Setup completed successfully!"
     echo "=================================================="
     echo ""
-    print_status "You are now in the frontend directory: $(pwd)"
+    print_status "You are now in the project directory: $(pwd)"
     print_status "Available deployment options:"
     echo ""
-    print_status "1. One-Button Deployment (Recommended):"
-    echo -e "   ${BLUE}cd .. && ./deploy-one-button.sh${NC}"
-    echo "   → Sets up full infrastructure + contracts + frontend"
-    echo ""
-    print_status "2. Frontend Only:"
+    print_status "1. Full Development Environment (Recommended):"
     echo -e "   ${BLUE}npm run dev${NC}"
-    echo "   → Quick frontend development server"
+    echo "   → Starts both API and frontend with hot reload"
     echo ""
-    print_status "3. Manual Development:"
-    echo -e "   ${BLUE}npx vite --host 0.0.0.0 --port 5173${NC}"
-    echo "   → Direct Vite server"
+    print_status "2. Frontend Only (Simple Review):"
+    echo -e "   ${BLUE}cd packages/frontend && npx vite --host 0.0.0.0 --port 5173${NC}"
+    echo "   → Quick frontend-only development server"
+    echo ""
+    print_status "3. One-Button Full Deployment:"
+    echo -e "   ${BLUE}./deploy-one-button.sh${NC}"
+    echo "   → Sets up full infrastructure + contracts + frontend"
     echo ""
     print_status "The application will be available at: http://localhost:5173"
     echo ""
     
     # Ask if user wants to start immediately
-    read -p "Do you want to start the frontend now? (Y/n): " -n 1 -r
+    read -p "Do you want to start the development environment now? (Y/n): " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Nn]$ ]]; then
-        print_status "Starting the frontend application..."
+        print_status "Starting the development environment..."
+        print_status "Note: This will start both API and frontend. Use Ctrl+C to stop."
+        echo ""
         npm run dev
     fi
 }
