@@ -20,13 +20,7 @@ function App() {
   // Preload critical data for performance
   usePreloadCriticalData();
 
-  const handleSwap = (
-    fromToken: string,
-    fromChain: string,
-    toToken: string,
-    toChain: string,
-    amount: string
-  ) => {
+  const handleSwap = () => {
     // Swap initiated - logged to analytics system
     // Here you would integrate with actual swap logic
   };

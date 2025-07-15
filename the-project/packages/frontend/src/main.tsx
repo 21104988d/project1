@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import './index.css';
+import App from './App.tsx';
 
 const rootElement = document.getElementById('root');
-if (rootElement) {
-  ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-} else {
-  // In a production app, you might want to log this to an error reporting service
+if (!rootElement) {
+  throw new Error('Root element not found');
 }
+
+createRoot(rootElement).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
