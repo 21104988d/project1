@@ -20,8 +20,6 @@
 project1/                                # Main Repository Root
 ├── REVIEW_README.md                     # 📋 This Guide (YOU ARE HERE)
 ├── REVIEW_README.zh-TW.md              # 📋 Chinese Version
-├── docker-compose.review.yml            # 🐳 Review Docker Setup
-├── nginx-review-frontend.conf           # ⚙️ Production-like Config
 ├── scripts/                             # 🔧 Setup Scripts
 │   ├── setup-review.sh                  # Unix/Linux/macOS Setup
 │   └── setup-review.bat                 # Windows Setup
@@ -30,8 +28,7 @@ project1/                                # Main Repository Root
 │   └── TROUBLESHOOTING.md               # Common Issues & Fixes
 └── the-project/                         # Development Monorepo (Integrated)
     ├── packages/frontend/               # React DApp
-    │   ├── src/demo/                    # Demo Components & Data
-    │   └── Dockerfile.review            # Review Container
+    │   └── src/demo/                    # Demo Components & Data
     └── ...other packages
 ```
 
@@ -225,7 +222,6 @@ npm run dev
 
 - ✅ Unix/Linux/macOS: `setup-review.sh`
 - ✅ Windows: `setup-review.bat`
-- ✅ Docker: `docker-compose.review.yml`
 
 ### **Demo Environment**
 

@@ -20,8 +20,6 @@
 project1/                                # 主儲存庫根目錄
 ├── REVIEW_README.md                     # 📋 本指南（您在這裡）
 ├── REVIEW_README.zh-TW.md              # 📋 中文版本
-├── docker-compose.review.yml            # 🐳 審查Docker設置
-├── nginx-review-frontend.conf           # ⚙️ 類生產配置
 ├── scripts/                             # 🔧 設置腳本
 │   ├── setup-review.sh                  # Unix/Linux/macOS設置
 │   └── setup-review.bat                 # Windows設置
@@ -30,8 +28,7 @@ project1/                                # 主儲存庫根目錄
 │   └── TROUBLESHOOTING.md               # 常見問題和修復
 └── the-project/                         # 開發Monorepo（已整合）
     ├── packages/frontend/               # React DApp
-    │   ├── src/demo/                    # 演示組件和數據
-    │   └── Dockerfile.review            # 審查容器
+    │   └── src/demo/                    # 演示組件和數據
     └── ...其他包
 ```
 
@@ -225,7 +222,6 @@ npm run dev
 
 - ✅ Unix/Linux/macOS：`setup-review.sh`
 - ✅ Windows：`setup-review.bat`
-- ✅ Docker：`docker-compose.review.yml`
 
 ### **演示環境**
 
