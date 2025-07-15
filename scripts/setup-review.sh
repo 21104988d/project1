@@ -159,6 +159,16 @@ fi
 # Copy demo environment to active environment
 cp .env.demo .env
 
+# Ensure API package has its own .env file
+if [ ! -f "packages/api/.env" ]; then
+    cat > packages/api/.env << 'EOF'
+# API Configuration
+PORT=3001
+DATABASE_URL="file:./dev.db"
+NODE_ENV=development
+EOF
+fi
+
 echo -e "${GREEN}✅ Demo environment configured${NC}"
 
 # Build the application

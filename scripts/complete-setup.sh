@@ -238,6 +238,19 @@ setup_application() {
         return 1
     fi
     
+    # Setup environment files
+    print_status "Setting up environment configuration..."
+    
+    # Ensure API package has its own .env file
+    if [ ! -f "packages/api/.env" ]; then
+        cat > packages/api/.env << 'EOF'
+# API Configuration
+PORT=3001
+DATABASE_URL="file:./dev.db"
+NODE_ENV=development
+EOF
+    fi
+    
     print_status "Setup completed successfully!"
 }
 
