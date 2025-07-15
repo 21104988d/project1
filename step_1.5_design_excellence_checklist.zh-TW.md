@@ -651,7 +651,7 @@
 #### 快速入門（3 分鐘）
 
 1. **下載存儲庫**
-2. **運行設置腳本**：`./scripts/setup-review.sh`（Linux/Mac）或 `setup-review.bat`（Windows）
+2. **運行設置腳本**：`./scripts/setup-review.sh`（Mac/Linux）或 `scripts\setup-review.bat`（Windows）
 3. **開始審查**：`npm run review:start`
 4. **打開瀏覽器**：導航到 `http://localhost:3000`
 

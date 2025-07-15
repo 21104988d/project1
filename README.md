@@ -1,7 +1,7 @@
 # The Project - USDT Core Cross-Chain Router
 
-**Version:** v2.2.0  
-**Last Updat## 🎭 Department Review Program
+**Version:** v2.2.5  
+**Last Updated:** July 15, 2025## 🎭 Department Review Program
 
 **For Non-Technical Department Reviews**: Starting from Part 1.5, the dapp is ready for comprehensive evaluation by other departments. We've created a streamlined review program that requires zero technical expertise.
 
@@ -19,8 +19,8 @@ scripts\setup-review.bat        # Windows
 
 # 3. Start reviewing
 cd the-project
-npm run review:start
-# Browser opens automatically to http://localhost:3000
+npm run dev
+# Browser opens automatically to http://localhost:5173
 ```
 
 ### 🎯 What Reviewers Get
