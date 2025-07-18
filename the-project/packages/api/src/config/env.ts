@@ -42,7 +42,7 @@ const envSchema = z.object({
   // Private Keys (optional for development)
   PRIVATE_KEY: z
     .string()
-    .regex(/^0x[a-fA-F0-9]{64}$/)
+    .regex(/^[a-fA-F0-9]{64}$/)
     .optional(),
 
   // Logging

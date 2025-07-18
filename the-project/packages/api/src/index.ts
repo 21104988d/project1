@@ -4,12 +4,19 @@
  * @author The Project Team
  */
 
+import dotenv from 'dotenv';
+import path from 'path';
+const envPath = path.resolve(__dirname, '../.env');
+console.log(`[dotenv] Loading .env from: ${envPath}`);
+const result = dotenv.config({ path: envPath });
+if (result.error) {
+  throw new Error(`[dotenv] Failed to load .env from ${envPath}: ${result.error}`);
+}
 import 'reflect-metadata';
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { env } from './config/env';
-import dotenv from 'dotenv';
 import { createServer } from 'http';
 import { Server as SocketIOServer } from 'socket.io';
 import swaggerUi from 'swagger-ui-express';
@@ -36,7 +43,7 @@ import { connectDatabase } from './config/database';
 import { connectRedis } from './config/redis';
 
 // Load environment variables
-dotenv.config();
+// (already loaded above)
 
 const app: Express = express();
 const server = createServer(app);
